@@ -14349,6 +14349,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views\\Account\\login.cshtml",
+      "TargetPath": "Views\\Account\\login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
@@ -14376,6 +14381,11 @@
     {
       "FilePath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Account\\Regiser.cshtml",
+      "TargetPath": "Views\\Account\\Regiser.cshtml",
       "FileKind": "mvc"
     }
   ],
