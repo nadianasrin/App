@@ -1,0 +1,53 @@
+@model Login
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row"><br>
+                <div class="center-align">
+                    <h4 class="orange-text text-darken-3">Sign In</h4>
+                </div>
+                <div class="card col s12 l10 offset-l1 offset-m1 z-depth-2 card-border">
+                    <div class="card-content">
+                        <div class="col s6 l5">
+                            <img id="info-svg-signin" width="300" class="responsive-img"
+                                src="~/img/undraw_arrived_f58d.svg" />
+                        </div>
+                        <form method="POST">
+                         <div asp-validation-summary="ModelOnly" class="red-text"></div>
+                        <div class="col s6 l5" id="info-input-field">
+                            <div class="row">
+                                <div class="input-field col s12 l12">
+                                    <input placeholder="161-35-0000" asp-for="LoginUserId" type="text" class="validate" required>
+                                    <label asp-for="LoginUserId">ID</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 l12">
+                                    <input placeholder="At least 6 digit" asp-for="LoginUserPassword" type="password"
+                                        class="validate" required>
+                                    <label asp-for="LoginUserPassword">Password</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="center-align">
+                                    <button type="submit" class="btn purple darken-4">Login</button>
+                                </div>
+                            </div>
+                             </form>
+                            <div class="row">
+                                <div class="center-align">
+                                    <span class="clink">New here?&nbsp; <a asp-controller="Account" asp-action="Register">SignUp</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

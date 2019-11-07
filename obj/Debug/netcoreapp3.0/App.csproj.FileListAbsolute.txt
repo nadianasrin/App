@@ -149,4 +149,4 @@ E:\App\obj\Debug\netcoreapp3.0\App.csproj.CopyComplete
 E:\App\obj\Debug\netcoreapp3.0\App.dll
 E:\App\obj\Debug\netcoreapp3.0\App.pdb
 e:\App\obj\Debug\netcoreapp3.0\Razor\Views\Account\Login.cshtml.g.cs
-e:\App\obj\Debug\netcoreapp3.0\Razor\Views\Account\Regiser.cshtml.g.cs
+e:\App\obj\Debug\netcoreapp3.0\Razor\Views\Account\Register.cshtml.g.cs
