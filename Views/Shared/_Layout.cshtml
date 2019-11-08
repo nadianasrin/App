@@ -27,14 +27,14 @@
                     <i class="material-icons">menu</i>
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a asp-controller="Account" asp-action="Login" class="btn-flat" id="square-signin">SignIn</a></li>
-                    <li><a asp-controller="Account" asp-action="Register" class="btn-flat" id="square-signup">SignUp</a></li>
+                    <li><a asp-action="signin" asp-controller="account" class="btn-flat" id="square-signin">SignIn</a></li>
+                    <li><a asp-action="signup" asp-controller="account" class="btn-flat" id="square-signup">SignUp</a></li>
                 </ul>
             </div>
         </nav>
         <ul class="sidenav" id="mobile-nav">
-            <li><a asp-controller="Account" asp-action="Register" >SignUp</a></li>
-            <li><a asp-controller="Account" asp-action="Login">SignIn</a></li>
+            <li><a asp-controller="account" asp-action="signup" >SignUp</a></li>
+            <li><a asp-controller="account" asp-action="signin">SignIn</a></li>
         </ul>
     </header>
 

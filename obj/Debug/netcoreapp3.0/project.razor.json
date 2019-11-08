@@ -14349,8 +14349,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Account\\login.cshtml",
-      "TargetPath": "Views\\Account\\login.cshtml",
+      "FilePath": "Views\\Account\\Signin.cshtml",
+      "TargetPath": "Views\\Account\\Signin.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14361,6 +14361,11 @@
     {
       "FilePath": "Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Account\\Signup.cshtml",
+      "TargetPath": "Views\\Account\\Signup.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14376,11 +14381,6 @@
     {
       "FilePath": "Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Account\\Register.cshtml",
-      "TargetPath": "Views\\Account\\Register.cshtml",
       "FileKind": "mvc"
     },
     {
