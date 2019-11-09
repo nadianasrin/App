@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CadetKid</title>
+    <link rel="icon" href="assets/img/cadetkid.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=El+Messiri&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/materializecss.css">
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+
+<body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <header>
+        <nav class="nav-extended nav-fixed purple darken-4 z-depth-2">
+            <div class="nav-wrapper">
+                <a class="brand-logo" id="cpa-logo"><i class="material-icons" id="logo-icon">select_all</i>CadetKid</a>
+                <a href="#" class="sidenav-trigger" data-target="mobile-nav">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <span></span>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-teal btn-flat white-text"><i class="material-icons right">logout</i>Logout</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-trigger waves-effect waves-light btn-flat white-text" href='#'
+                            data-target='dropdown1'><i class="material-icons left">arrow_drop_down</i>Pages</a>
+                        <ul id='dropdown1' class='dropdown-content'>
+                            <li><a href="enrolled_student.html">Enrolled students</a></li>
+                            <li><a href="retake_student.html">Retake students</a></li>
+                            <li><a href="batch22.html">Section</a></li>
+                            <li><a href="active-enrollment.html">Active enrollment</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <ul class="sidenav" id="mobile-nav">
+            <li><a href="signup.html">SignUp</a></li>
+            <li><a href="signin.html">SignIn</a></li>
+            <li><a href="enrolled_student.html">Enrolled students</a></li>
+            <li><a href="retake_student.html">Retake students</a></li>
+            <li><a href="batch22.html">Section</a></li>
+            <li><a href="active-enrollment.html">Active enrollment</a></li>
+        </ul>
+    </header>
+
+    <div class="container">
+
+    </div>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/materialize.js"></script>
+    <script src="~/js/plugin.js"></script>
+    <script src="~/js/app.js"></script>
+</body>
+
+</html>
