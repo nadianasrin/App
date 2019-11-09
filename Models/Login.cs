@@ -10,5 +10,6 @@ namespace App.Models
         public string LoginUserId { get; set; }
         [Required, DataType(DataType.Password)]
         public string LoginUserPassword { get; set; }
+        public bool RememberMe { get; set; }
     }
 }

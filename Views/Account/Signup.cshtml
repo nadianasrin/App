@@ -50,9 +50,10 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12 l12">
-                                    <input placeholder="At least 6 digit" id="cpassword" type="password"
+                                    <input placeholder="At least 6 digit" asp-for="ConfirmPassword" type="password"
                                         class="validate">
-                                    <label for="cpassword">Confirm Password</label>
+                                    <label asp-for="ConfirmPassword">Confirm Password</label>
+                                    <span class="red-text text-darken-1" asp-validation-for="ConfirmPassword"></span>
                                 </div>
                             </div>
                             <div class="row">

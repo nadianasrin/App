@@ -50,5 +50,23 @@ namespace App.Controllers
             }
             return View(registration);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Signin(Login login)
+        {
+            if(ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(login.LoginUserId, login.LoginUserPassword, login.RememberMe, false);
+
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("index", "home"); 
+                }
+
+                ModelState.AddModelError(string.Empty, "Invalid login attempt");
+            }
+            return View(login);
+        }
+        
     }
 }

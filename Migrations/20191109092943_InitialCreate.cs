@@ -70,7 +70,8 @@ namespace App.Migrations
                     LoginId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     LoginUserId = table.Column<string>(nullable: false),
-                    LoginUserPassword = table.Column<string>(nullable: false)
+                    LoginUserPassword = table.Column<string>(nullable: false),
+                    RememberMe = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -98,9 +99,10 @@ namespace App.Migrations
                     RegistrationId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     StudentVarsityId = table.Column<string>(nullable: false),
-                    StudentFullName = table.Column<string>(nullable: false),
+                    StudentFullName = table.Column<string>(maxLength: 25, nullable: false),
                     RegUserEmail = table.Column<string>(nullable: false),
-                    RegUserPassword = table.Column<string>(nullable: false)
+                    RegUserPassword = table.Column<string>(nullable: false),
+                    ConfirmPassword = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

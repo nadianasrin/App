@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191107180550_InitialCreate")]
+    [Migration("20191109092943_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,6 +158,9 @@ namespace App.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("RememberMe")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("LoginId");
 
                     b.ToTable("Login");
@@ -186,6 +189,10 @@ namespace App.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ConfirmPassword")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("RegUserEmail")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -196,7 +203,8 @@ namespace App.Migrations
 
                     b.Property<string>("StudentFullName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(25);
 
                     b.Property<string>("StudentVarsityId")
                         .IsRequired()
