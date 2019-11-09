@@ -14389,8 +14389,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Shared\\_LaoutTeacher.cshtml",
-      "TargetPath": "Views\\Shared\\_LaoutTeacher.cshtml",
+      "FilePath": "Views\\Shared\\_LayoutTeacher.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutTeacher.cshtml",
       "FileKind": "mvc"
     },
     {

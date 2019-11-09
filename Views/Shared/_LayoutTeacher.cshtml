@@ -1,4 +1,4 @@
-
+@inject SignInManager<IdentityUser> signInManager;
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="icon" href="assets/img/cadetkid.png">
+    <link rel="icon" href="~/img/cadetkid.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=El+Messiri&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -29,11 +29,24 @@
                     <i class="material-icons">menu</i>
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="enrolled_student.html">Enrolled Student</a></li>
-                    <li><a href="retake_student.html">Retake Students</a></li>
-                    <li class="active"><a href="active-enrollment.html">Active Enrollment</a></li>
-                    <li><a href="index.html" class="tooltipped" data-tooltip="Logout"><i
-                                class="material-icons">exit_to_app</i></a></li>
+                    @if(signInManager.IsSignedIn(User))
+                    {
+                        <li><a href="enrolled_student.html">Enrolled Student</a></li>
+                        <li><a href="retake_student.html">Retake Students</a></li>
+                        <li class="active"><a href="active-enrollment.html">Active Enrollment</a></li>
+                        <li>
+                        <form method="POST" asp-action="logout" asp-controller="account">
+                            <a onclick="$(this).closest('form').submit();" class="tooltipped" data-tooltip="Logout Admin"><i
+                                class="material-icons right">exit_to_app</i>Logout Admin</a>
+                        </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a asp-action="signin" asp-controller="account" class="btn-flat" id="square-signin">SignIn</a></li>
+                        <li><a asp-action="signup" asp-controller="account" class="btn-flat" id="square-signup">SignUp</a></li>
+                    }
+                   
                 </ul>
             </div>
         </nav>
