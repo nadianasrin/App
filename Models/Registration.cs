@@ -5,7 +5,7 @@ namespace App.Models
     public class Registration
     {
         [Key]
-        public int RegistrationId { get; set; }
+        public string RegistrationId { get; set; }
         
         [Required]
         [RegularExpression(@"([0-9])([0-9])([0-9])-([0-9])([0-9])-[0-9]+", ErrorMessage = "Incorrect DIU Student ID")]

@@ -183,9 +183,8 @@ namespace App.Migrations
 
             modelBuilder.Entity("App.Models.Registration", b =>
                 {
-                    b.Property<int>("RegistrationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("RegistrationId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ConfirmPassword")
                         .IsRequired()
@@ -242,8 +241,8 @@ namespace App.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("RegistrationId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("RegistrationId")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("SemesterId")
                         .HasColumnType("INTEGER");

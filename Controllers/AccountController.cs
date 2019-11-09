@@ -9,9 +9,11 @@ namespace App.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ApplicationDbContext _context;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext context)
         {
+            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -29,18 +31,31 @@ namespace App.Controllers
             return View();  
         }
 
+        private string CurrentlyLoggedInUserId(string username)
+        {
+            return _userManager.FindByNameAsync(username).Result.Id;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Signup(Registration registration)
         {
             if(ModelState.IsValid)
             {
-                var user = new ApplicationUser{UserName = registration.StudentVarsityId, Email = registration.RegUserEmail};
+                var user = new ApplicationUser
+                {
+                    Id = registration.RegistrationId,
+                    UserName = registration.StudentVarsityId,
+                    Student_FullName = registration.StudentFullName,
+                    Email = registration.RegUserEmail
+                };
                 var result = await _userManager.CreateAsync(user, registration.RegUserPassword);
 
                 if(result.Succeeded)
                 {
+                    _context.Add(registration);
+                    await _context.SaveChangesAsync();
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("signin", "account"); 
+                    return RedirectToAction("signin", "account", new {sid = registration.RegistrationId}); 
                 }
 
                 foreach(var error in result.Errors)
@@ -60,6 +75,7 @@ namespace App.Controllers
 
                 if(result.Succeeded)
                 {
+
                     return RedirectToAction("index", "home"); 
                 }
 

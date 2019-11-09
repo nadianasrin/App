@@ -96,8 +96,7 @@ namespace App.Migrations
                 name: "Registration",
                 columns: table => new
                 {
-                    RegistrationId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    RegistrationId = table.Column<string>(nullable: false),
                     StudentVarsityId = table.Column<string>(nullable: false),
                     StudentFullName = table.Column<string>(maxLength: 25, nullable: false),
                     RegUserEmail = table.Column<string>(nullable: false),
@@ -237,7 +236,7 @@ namespace App.Migrations
                 {
                     StudentId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    RegistrationId = table.Column<int>(nullable: true),
+                    RegistrationId = table.Column<string>(nullable: true),
                     SemesterId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

@@ -14384,8 +14384,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views\\Shared\\_LaoutTeacher.cshtml",
+      "TargetPath": "Views\\Shared\\_LaoutTeacher.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Teacher\\EnrolledStudent.cshtml",
+      "TargetPath": "Views\\Teacher\\EnrolledStudent.cshtml",
       "FileKind": "mvc"
     }
   ],
