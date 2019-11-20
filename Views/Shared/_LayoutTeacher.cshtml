@@ -1,0 +1,73 @@
+@inject SignInManager<IdentityUser> signInManager;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="icon" href="~/img/cadetkid.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=El+Messiri&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/materializecss.css">
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+
+<body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <header>
+        <nav class="nav-extended nav-fixed purple darken-4">
+            <div class="nav-wrapper">
+                <a class="brand-logo" id="cpa-logo"><i class="material-icons" id="logo-icon">select_all</i>CadetKid</a>
+                <a class="brand-logo center" id="brand-logo-accesspage">Course Pre-Advising</a>
+                <a href="#" class="sidenav-trigger" data-target="mobile-nav">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    @if(signInManager.IsSignedIn(User))
+                    {
+                        <li><a href="enrolled_student.html">Enrolled Student</a></li>
+                        <li><a href="retake_student.html">Retake Students</a></li>
+                        <li class="active"><a href="active-enrollment.html">Active Enrollment</a></li>
+                        <li>
+                        <form method="POST" asp-action="logout" asp-controller="account">
+                            <a onclick="$(this).closest('form').submit();" class="tooltipped" data-tooltip="Logout Admin"><i
+                                class="material-icons right">exit_to_app</i>Logout Admin</a>
+                        </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a asp-action="signin" asp-controller="account" class="btn-flat" id="square-signin">SignIn</a></li>
+                        <li><a asp-action="signup" asp-controller="account" class="btn-flat" id="square-signup">SignUp</a></li>
+                    }
+                   
+                </ul>
+            </div>
+        </nav>
+        <ul class="sidenav" id="mobile-nav">
+            <li><a href="enrolled_student.html">Enrolled Student</a></li>
+            <li><a href="retake_student.html">Retake Students</a></li>
+            <li class="active"><a href="active-enrollment.html">Active Enrollment</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/materialize.js"></script>
+    <script src="~/js/plugin.js"></script>
+    <script src="~/js/app.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

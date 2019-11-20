@@ -135,6 +135,8 @@ E:\App\obj\Debug\netcoreapp3.0\App.AssemblyInfo.cs
 E:\App\obj\Debug\netcoreapp3.0\App.TagHelpers.input.cache
 E:\App\obj\Debug\netcoreapp3.0\App.TagHelpers.output.cache
 E:\App\obj\Debug\netcoreapp3.0\App.RazorCoreGenerate.cache
+E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Account\Signin.cshtml.g.cs
+E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Account\Signup.cshtml.g.cs
 E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
 E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Home\Privacy.cshtml.g.cs
 E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs
@@ -148,3 +150,7 @@ E:\App\obj\Debug\netcoreapp3.0\App.Views.pdb
 E:\App\obj\Debug\netcoreapp3.0\App.csproj.CopyComplete
 E:\App\obj\Debug\netcoreapp3.0\App.dll
 E:\App\obj\Debug\netcoreapp3.0\App.pdb
+e:\App\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LayoutStudent.cshtml.g.cs
+e:\App\obj\Debug\netcoreapp3.0\Razor\Views\Student\index.cshtml.g.cs
+e:\App\obj\Debug\netcoreapp3.0\Razor\Views\Teacher\EnrolledStudent.cshtml.g.cs
+e:\App\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LayoutTeacher.cshtml.g.cs

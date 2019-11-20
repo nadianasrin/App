@@ -1,0 +1,81 @@
+@model Registration
+
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<div class="row"><br>
+                <div class="center-align">
+                    <h4 class="orange-text text-darken-3">Sign Up</h4>
+                </div>
+                <div class="card col s12 l10 offset-l1 offset-m1 z-depth-2 card-border">
+                    <div class="card-content">
+                        <div class="col s6 l5">
+                            <img id="info-svg-signup" width="500" class="responsive-img"
+                                src="~/img/undraw_personal_information_962o.svg" />
+                            <br><br>
+                        </div>
+                        <form method="POST">
+                        <div class="col s6 l5" id="info-input-field">
+                            <div asp-validation-summary="All" class="red-text text-darken-1"></div>
+                            <div class="row">
+                                <div class="input-field col s12 l12">
+                                    <input placeholder="161-35-0000" asp-for="StudentVarsityId" type="text" class="validate" required>
+                                    <label asp-for="StudentVarsityId">ID</label>
+                                     <span class="red-text text-darken-1" asp-validation-for="StudentVarsityId"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 l12">
+                                    <input placeholder="Name" asp-for="StudentFullName" type="text" class="validate" required>
+                                    <label asp-for="StudentFullName">Name</label>
+                                     <span class="red-text text-darken-1" asp-validation-for="StudentFullName"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 l12">
+                                    <input placeholder="example00-0000@diu.edu.bd" asp-for="RegUserEmail" type="email"
+                                        class="validate" required>
+                                    <label asp-for="RegUserEmail">Email</label>
+                                    <span class="red-text text-darken-1" asp-validation-for="RegUserEmail"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 l12">
+                                    <input placeholder="At least 6 digit" asp-for="RegUserPassword" type="password"
+                                        class="validate">
+                                    <label asp-for="RegUserPassword">Password</label>
+                                    <span class="red-text text-darken-1" asp-validation-for="RegUserPassword"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 l12">
+                                    <input placeholder="At least 6 digit" asp-for="ConfirmPassword" type="password"
+                                        class="validate">
+                                    <label asp-for="ConfirmPassword">Confirm Password</label>
+                                    <span class="red-text text-darken-1" asp-validation-for="ConfirmPassword"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="center-align">
+                                    <button type="submit" class="btn purple darken-4">Register</button>
+                                </div>
+                            </div>
+                            </form>
+                            <div class="row">
+                                <div class="center-align">
+                                    <span class="clink">Already have an account?&nbsp; 
+                                        <a asp-controller="account" asp-action="signin">SignIn</a></span><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial"); 
+    }
+}

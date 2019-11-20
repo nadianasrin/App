@@ -14349,13 +14349,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views\\Account\\Signin.cshtml",
+      "TargetPath": "Views\\Account\\Signin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views\\Student\\index.cshtml",
+      "TargetPath": "Views\\Student\\index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Account\\Signup.cshtml",
+      "TargetPath": "Views\\Account\\Signup.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14374,8 +14389,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views\\Shared\\_LayoutTeacher.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutTeacher.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Shared\\_LayoutStudent.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutStudent.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Teacher\\EnrolledStudent.cshtml",
+      "TargetPath": "Views\\Teacher\\EnrolledStudent.cshtml",
       "FileKind": "mvc"
     }
   ],

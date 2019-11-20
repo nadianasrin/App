@@ -156,6 +156,9 @@ namespace App.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("RememberMe")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("LoginId");
 
                     b.ToTable("Login");
@@ -180,9 +183,12 @@ namespace App.Migrations
 
             modelBuilder.Entity("App.Models.Registration", b =>
                 {
-                    b.Property<int>("RegistrationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("RegistrationId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConfirmPassword")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("RegUserEmail")
                         .IsRequired()
@@ -194,7 +200,8 @@ namespace App.Migrations
 
                     b.Property<string>("StudentFullName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(25);
 
                     b.Property<string>("StudentVarsityId")
                         .IsRequired()
@@ -234,8 +241,8 @@ namespace App.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("RegistrationId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("RegistrationId")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("SemesterId")
                         .HasColumnType("INTEGER");
