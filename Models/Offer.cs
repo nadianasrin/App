@@ -8,5 +8,6 @@ namespace App.Models
         public int OfferId { get; set; }
         public string OfferSection { get; set; }
         public string OfferCourse { get; set; }
+        public Course OfferedCourse { get; set; }
     }
 }

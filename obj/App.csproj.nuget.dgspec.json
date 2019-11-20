@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\App\\App.csproj": {}
+    "E:\\app\\App.csproj": {}
   },
   "projects": {
-    "E:\\App\\App.csproj": {
+    "E:\\app\\App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\App\\App.csproj",
+        "projectUniqueName": "E:\\app\\App.csproj",
         "projectName": "App",
-        "projectPath": "E:\\App\\App.csproj",
+        "projectPath": "E:\\app\\App.csproj",
         "packagesPath": "C:\\Users\\Zubu\\.nuget\\packages\\",
-        "outputPath": "E:\\App\\obj\\",
+        "outputPath": "E:\\app\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

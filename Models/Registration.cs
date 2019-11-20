@@ -21,6 +21,7 @@ namespace App.Models
 
         [Required, DataType(DataType.Password)]
         public string RegUserPassword { get; set; }
+        
         [Required]
         [Compare("RegUserPassword", ErrorMessage = "Passwords don't match")]
         public string ConfirmPassword { get; set; }

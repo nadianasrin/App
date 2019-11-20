@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using App.Models;
 using Microsoft.AspNetCore.Identity;
@@ -39,6 +40,8 @@ namespace App.Controllers
         [HttpPost]
         public async Task<IActionResult> Signup(Registration registration)
         {
+            registration.RegistrationId = Guid.NewGuid().ToString().Replace("-", "");
+
             if(ModelState.IsValid)
             {
                 var user = new ApplicationUser
@@ -76,13 +79,10 @@ namespace App.Controllers
                 {
                     return RedirectToAction("EnrolledStudent", "Teacher");
                 }
-
-
                 var result = await _signInManager.PasswordSignInAsync(login.LoginUserId, login.LoginUserPassword, login.RememberMe, false);
 
                 if(result.Succeeded)
                 {
-
                     return RedirectToAction("index", "Student"); 
                 }
 
