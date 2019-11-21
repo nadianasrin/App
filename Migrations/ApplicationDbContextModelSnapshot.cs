@@ -396,6 +396,31 @@ namespace App.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("app.Models.OfficerReg", b =>
+                {
+                    b.Property<string>("OfficerId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OfficerConfirmPassword")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OfficerEmail")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OfficerPassword")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("OfficerId");
+
+                    b.ToTable("OfficerReg");
+                });
+
             modelBuilder.Entity("App.Models.Course", b =>
                 {
                     b.HasOne("App.Models.Semester", "SemesterNo")

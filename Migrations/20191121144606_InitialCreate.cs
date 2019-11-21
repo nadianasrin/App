@@ -65,6 +65,21 @@ namespace App.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OfficerReg",
+                columns: table => new
+                {
+                    OfficerId = table.Column<string>(nullable: false),
+                    OfficerEmail = table.Column<string>(nullable: false),
+                    Role = table.Column<string>(nullable: true),
+                    OfficerPassword = table.Column<string>(nullable: false),
+                    OfficerConfirmPassword = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OfficerReg", x => x.OfficerId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Registration",
                 columns: table => new
                 {
@@ -410,6 +425,9 @@ namespace App.Migrations
 
             migrationBuilder.DropTable(
                 name: "Offer");
+
+            migrationBuilder.DropTable(
+                name: "OfficerReg");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

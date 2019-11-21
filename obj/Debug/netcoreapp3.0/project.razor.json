@@ -9043,7 +9043,7 @@
         "Kind": "ITagHelper",
         "Name": "Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper",
         "AssemblyName": "Microsoft.AspNetCore.Mvc.Razor",
-        "Documentation": "\n            <summary>\n            <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" /> implementation targeting elements containing attributes with URL expected values.\n            </summary>\n            <remarks>Resolves URLs starting with '~/' (relative to the application's 'webroot' setting) that are not\n            targeted by other <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" />s. Runs prior to other <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" />s to ensure\n            application-relative URLs are resolved.</remarks>\n        ",
+        "Documentation": null,
         "TagOutputHint": null,
         "CaseSensitive": false,
         "TagMatchingRules": [
@@ -14379,6 +14379,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views\\Account\\TSignup.cshtml",
+      "TargetPath": "Views\\Account\\TSignup.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -14401,11 +14406,6 @@
     {
       "FilePath": "Views\\Shared\\_LayoutStudent.cshtml",
       "TargetPath": "Views\\Shared\\_LayoutStudent.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Account\\TeacherSignup.cshtml",
-      "TargetPath": "Views\\Account\\TeacherSignup.cshtml",
       "FileKind": "mvc"
     },
     {

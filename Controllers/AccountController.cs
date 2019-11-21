@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using app.Models;
 using App.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,8 @@ namespace App.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _context;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext context)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
+            ApplicationDbContext context)
         {
             _context = context;
             _userManager = userManager;
@@ -21,6 +23,11 @@ namespace App.Controllers
 
         // Request to view account/signup
         public IActionResult Signup()
+        {
+            return View();
+        }
+
+        public IActionResult TSignup()
         {
             return View();
         }
@@ -40,7 +47,7 @@ namespace App.Controllers
         {
             registration.RegistrationId = Guid.NewGuid().ToString().Replace("-", "");
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var user = new ApplicationUser
                 {
@@ -52,37 +59,72 @@ namespace App.Controllers
                 };
                 var result = await _userManager.CreateAsync(user, registration.RegUserPassword);
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     _context.Add(registration);
                     await _context.SaveChangesAsync();
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("signin", "account", new {sid = registration.RegistrationId}); 
+                    return RedirectToAction("signin", "account", new {sid = registration.RegistrationId});
                 }
 
-                foreach(var error in result.Errors)
+                foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
             }
+
             return View(registration);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Tsignup(OfficerReg officerreg)
+        {
+            officerreg.OfficerId = Guid.NewGuid().ToString().Replace("-", "");
+
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    Id = officerreg.OfficerId,
+                    UserName = officerreg.OfficerEmail,
+                    Role = officerreg.Role,
+                    Email = officerreg.OfficerEmail
+                };
+                var result = await _userManager.CreateAsync(user, officerreg.OfficerPassword);
+
+                if (result.Succeeded)
+                {
+                    _context.Add(officerreg);
+                    await _context.SaveChangesAsync();
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("signin", "account", new {oid = officerreg.OfficerId});
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
+            return View(officerreg);
         }
 
         [HttpPost]
         public async Task<IActionResult> Signin(Login login)
         {
-
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(login.LoginUserId, login.LoginUserPassword, login.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(login.LoginUserId, login.LoginUserPassword,
+                    login.RememberMe, false);
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "Student"); 
+                    return RedirectToAction("index", "home");
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid login attempt");
             }
+
             return View(login);
         }
 

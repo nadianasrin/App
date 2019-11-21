@@ -12,12 +12,11 @@
                     <div class="card-content">
                         <div class="col s6 l5">
                             <img id="info-svg-signup" width="500" class="responsive-img"
-                                src="~/img/undraw_personal_information_962o.svg" />
-                            <br><br>
+                                 src="~/img/undraw_personal_information_962o.svg" />
                         </div>
-                        <form method="POST">
                         <div class="col s6 l5" id="info-input-field">
-                            <div asp-validation-summary="All" class="red-text text-darken-1"></div>
+                        <form method="POST">
+                        <div asp-validation-summary="All" class="red-text text-darken-1"></div>
                             <div class="row">
                                 <div class="input-field col s12 l12">
                                     <input asp-for="Role" type="text" value="Student" readonly>
@@ -62,11 +61,12 @@
                                     <span class="red-text text-darken-1" asp-validation-for="ConfirmPassword"></span>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="center-align">
-                                    <button type="submit" class="btn purple darken-4">Register</button>
-                                </div>
+                        <div class="row">
+                            <div class="center-align">
+                                <button type="submit" class="btn purple darken-4">Register</button>
                             </div>
+                        </div>
+                       
                             </form>
                             <div class="row">
                                 <div class="center-align">
@@ -74,11 +74,10 @@
                                         <a asp-controller="account" asp-action="signin">SignIn</a></span><br>
                                 </div>
                             </div>
+                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
 
 @section Scripts {
     @{

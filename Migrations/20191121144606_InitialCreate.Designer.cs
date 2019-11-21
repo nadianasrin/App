@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191121125740_InitialCreate")]
+    [Migration("20191121144606_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -396,6 +396,31 @@ namespace App.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("app.Models.OfficerReg", b =>
+                {
+                    b.Property<string>("OfficerId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OfficerConfirmPassword")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OfficerEmail")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OfficerPassword")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("OfficerId");
+
+                    b.ToTable("OfficerReg");
                 });
 
             modelBuilder.Entity("App.Models.Course", b =>
