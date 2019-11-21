@@ -41,7 +41,8 @@ namespace App.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Student_VarsityId = table.Column<string>(nullable: true),
-                    Student_FullName = table.Column<string>(nullable: true)
+                    Student_FullName = table.Column<string>(nullable: true),
+                    Role = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

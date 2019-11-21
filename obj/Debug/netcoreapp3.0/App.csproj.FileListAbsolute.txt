@@ -137,6 +137,7 @@ E:\app\obj\Debug\netcoreapp3.0\App.TagHelpers.output.cache
 E:\app\obj\Debug\netcoreapp3.0\App.RazorCoreGenerate.cache
 E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Account\Signin.cshtml.g.cs
 E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Account\Signup.cshtml.g.cs
+E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Account\TeacherSignup.cshtml.g.cs
 E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
 E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Home\Privacy.cshtml.g.cs
 E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs

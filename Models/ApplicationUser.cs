@@ -6,5 +6,6 @@ namespace App.Models
     {
         public string Student_VarsityId { get; set; }
         public string Student_FullName { get; set; }
+        public string Role { get; set; }
     }
 }

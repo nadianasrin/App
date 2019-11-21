@@ -45,6 +45,7 @@ namespace App.Controllers
                 var user = new ApplicationUser
                 {
                     Id = registration.RegistrationId,
+                    Role = registration.Role,
                     UserName = registration.StudentVarsityId,
                     Student_FullName = registration.StudentFullName,
                     Email = registration.RegUserEmail
@@ -73,7 +74,6 @@ namespace App.Controllers
 
             if(ModelState.IsValid)
             {
-             
                 var result = await _signInManager.PasswordSignInAsync(login.LoginUserId, login.LoginUserPassword, login.RememberMe, false);
 
                 if(result.Succeeded)
