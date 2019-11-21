@@ -5,7 +5,7 @@ namespace App.Models
 {
     public class Course
     {
-        [Key]
+        [Key]           
         public int CourseId { get; set; }
         [Required]
         public string CourseCode { get; set; }
@@ -13,6 +13,7 @@ namespace App.Models
         public string CourseTitle { get; set; }
         [Required]
         public int CourseCredit { get; set; }
+        public Semester SemesterNo { get; set; }
         public List<Enrollment> ListOfEnrollmentCourse { get; set; }
     }
 }

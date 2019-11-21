@@ -18,6 +18,7 @@ namespace App.Models
         [Required, DataType(DataType.EmailAddress)]
         [RegularExpression(@"^[\w.+\-]+([0-9])([0-9])-[0-9]+@diu.edu.bd$" ,ErrorMessage = "Use DIU email format")]
         public string RegUserEmail { get; set; }
+        public string Role { get; set; }
 
         [Required, DataType(DataType.Password)]
         public string RegUserPassword { get; set; }

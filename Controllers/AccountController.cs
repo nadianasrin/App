@@ -19,8 +19,6 @@ namespace App.Controllers
             _signInManager = signInManager;
         }
 
-
-
         // Request to view account/signup
         public IActionResult Signup()
         {
@@ -29,7 +27,7 @@ namespace App.Controllers
 
         public IActionResult Signin()
         {
-            return View();  
+            return View();
         }
 
         private string CurrentlyLoggedInUserId(string username)
@@ -75,10 +73,7 @@ namespace App.Controllers
 
             if(ModelState.IsValid)
             {
-                 if(login.LoginUserId == "admin123" && login.LoginUserPassword == "admin123")
-                {
-                    return RedirectToAction("EnrolledStudent", "Teacher");
-                }
+             
                 var result = await _signInManager.PasswordSignInAsync(login.LoginUserId, login.LoginUserPassword, login.RememberMe, false);
 
                 if(result.Succeeded)
@@ -98,6 +93,5 @@ namespace App.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("index", "home");
         }
-        
     }
 }

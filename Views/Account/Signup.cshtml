@@ -20,6 +20,12 @@
                             <div asp-validation-summary="All" class="red-text text-darken-1"></div>
                             <div class="row">
                                 <div class="input-field col s12 l12">
+                                    <input asp-for="StudentVarsityId" type="text" class="validate" required>
+                                    <label asp-for="Role">Role</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 l12">
                                     <input placeholder="161-35-0000" asp-for="StudentVarsityId" type="text" class="validate" required>
                                     <label asp-for="StudentVarsityId">ID</label>
                                      <span class="red-text text-darken-1" asp-validation-for="StudentVarsityId"></span>
