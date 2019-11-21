@@ -27,7 +27,7 @@ namespace App.Controllers
             return View();
         }
 
-        public IActionResult TSignup()
+        public IActionResult Tsignup()
         {
             return View();
         }
@@ -37,7 +37,11 @@ namespace App.Controllers
             return View();
         }
 
-        private string CurrentlyLoggedInUserId(string username)
+        private string getUserRole(string username)
+        {
+            return _userManager.FindByNameAsync(username).Result.Role;
+        }
+        private string getUserId(string username)
         {
             return _userManager.FindByNameAsync(username).Result.Id;
         }
@@ -76,6 +80,9 @@ namespace App.Controllers
             return View(registration);
         }
 
+        /*
+         * Request comes from account/tsignup
+         */
         [HttpPost]
         public async Task<IActionResult> Tsignup(OfficerReg officerreg)
         {
@@ -114,12 +121,19 @@ namespace App.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userName = login.LoginUserId;
                 var result = await _signInManager.PasswordSignInAsync(login.LoginUserId, login.LoginUserPassword,
                     login.RememberMe, false);
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    var userRole = getUserRole(userName);
+                    if (userRole == "Student")
+                    {
+                        return RedirectToAction("index", "Student",  new { sid = getUserId(userName) });
+                    }
+
+                    return RedirectToAction("enrolledstudent", "Teacher", new {oid = getUserId(userName)});
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid login attempt");

@@ -154,4 +154,4 @@ E:\app\obj\Debug\netcoreapp3.0\App.Views.pdb
 E:\app\obj\Debug\netcoreapp3.0\App.csproj.CopyComplete
 E:\app\obj\Debug\netcoreapp3.0\App.dll
 E:\app\obj\Debug\netcoreapp3.0\App.pdb
-E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Students\index.cshtml.g.cs
+E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Student\index.cshtml.g.cs

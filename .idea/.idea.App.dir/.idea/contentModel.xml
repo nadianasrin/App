@@ -11,11 +11,10 @@
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="cadetkid.db" t="Include" />
-      <e p="cadetkid.db-shm" t="Include" />
-      <e p="cadetkid.db-wal" t="Include" />
       <e p="Controllers" t="Include">
         <e p="AccountController.cs" t="Include" />
         <e p="HomeController.cs" t="Include" />
+        <e p="StudentController.cs" t="Include" />
         <e p="TeacherController.cs" t="Include" />
       </e>
       <e p="Migrations" t="Include">
@@ -68,7 +67,7 @@
           <e p="_ValidationScriptsPartial.cshtml" t="Include" />
           <e p="Error.cshtml" t="Include" />
         </e>
-        <e p="Students" t="Include">
+        <e p="Student" t="Include">
           <e p="Index.cshtml" t="Include" />
         </e>
         <e p="Teacher" t="Include">
