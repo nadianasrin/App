@@ -6,7 +6,7 @@ namespace App.Models
     {
         [Key]
         public int OfferId { get; set; }
-        public string OfferSection { get; set; }
-        public string OfferCourse { get; set; }
+        public Course DesiredCourse { get; set; }
+        public Course OfferedCourse { get; set; }
     }
 }

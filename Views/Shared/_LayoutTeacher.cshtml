@@ -1,4 +1,5 @@
-@inject SignInManager<IdentityUser> signInManager;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager;
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,22 +30,22 @@
                     <i class="material-icons">menu</i>
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    @if(signInManager.IsSignedIn(User))
+                    @if(SignInManager.IsSignedIn(User))
                     {
                         <li><a href="enrolled_student.html">Enrolled Student</a></li>
                         <li><a href="retake_student.html">Retake Students</a></li>
                         <li class="active"><a href="active-enrollment.html">Active Enrollment</a></li>
                         <li>
                         <form method="POST" asp-action="logout" asp-controller="account">
-                            <a onclick="$(this).closest('form').submit();" class="tooltipped" data-tooltip="Logout Admin"><i
-                                class="material-icons right">exit_to_app</i>Logout Admin</a>
+                            <a onclick="$(this).closest('form').submit();"><i
+                                class="material-icons right">exit_to_app</i>Logout @User.Identity.Name</a>
                         </form>
                         </li>
                     }
-                    else
+                    @if (!SignInManager.IsSignedIn(User))
                     {
                         <li><a asp-action="signin" asp-controller="account" class="btn-flat" id="square-signin">SignIn</a></li>
-                        <li><a asp-action="signup" asp-controller="account" class="btn-flat" id="square-signup">SignUp</a></li>
+                        <li><a asp-action="Tsignup" asp-controller="account" class="btn-flat" id="square-signup">SignUp</a></li>
                     }
                    
                 </ul>

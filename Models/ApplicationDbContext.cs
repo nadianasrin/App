@@ -1,3 +1,4 @@
+using app.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,7 @@ namespace App.Models
         public DbSet<Offer> Offer { get; set; }
         public DbSet<Semester> Semester { get; set; }
         public DbSet<Student> Student { get; set; }
+        public DbSet<OfficerReg> OfficerReg { get; set; }
 
          protected override void OnModelCreating(ModelBuilder builder)
         {

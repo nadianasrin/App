@@ -41,26 +41,12 @@ namespace App.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Student_VarsityId = table.Column<string>(nullable: true),
-                    Student_FullName = table.Column<string>(nullable: true)
+                    Student_FullName = table.Column<string>(nullable: true),
+                    Role = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Course",
-                columns: table => new
-                {
-                    CourseId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    CourseCode = table.Column<string>(nullable: false),
-                    CourseTitle = table.Column<string>(nullable: false),
-                    CourseCredit = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Course", x => x.CourseId);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,17 +65,18 @@ namespace App.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Offer",
+                name: "OfficerReg",
                 columns: table => new
                 {
-                    OfferId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    OfferSection = table.Column<string>(nullable: true),
-                    OfferCourse = table.Column<string>(nullable: true)
+                    OfficerId = table.Column<string>(nullable: false),
+                    OfficerEmail = table.Column<string>(nullable: false),
+                    Role = table.Column<string>(nullable: true),
+                    OfficerPassword = table.Column<string>(nullable: false),
+                    OfficerConfirmPassword = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Offer", x => x.OfferId);
+                    table.PrimaryKey("PK_OfficerReg", x => x.OfficerId);
                 });
 
             migrationBuilder.CreateTable(
@@ -100,6 +87,7 @@ namespace App.Migrations
                     StudentVarsityId = table.Column<string>(nullable: false),
                     StudentFullName = table.Column<string>(maxLength: 25, nullable: false),
                     RegUserEmail = table.Column<string>(nullable: false),
+                    Role = table.Column<string>(nullable: true),
                     RegUserPassword = table.Column<string>(nullable: false),
                     ConfirmPassword = table.Column<string>(nullable: false)
                 },
@@ -116,7 +104,6 @@ namespace App.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     SemesterName = table.Column<string>(nullable: true),
                     IsActiveForm = table.Column<bool>(nullable: false),
-                    TypeOfSection = table.Column<string>(nullable: true),
                     IsActiveCourseSuggestion = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -231,6 +218,28 @@ namespace App.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Course",
+                columns: table => new
+                {
+                    CourseId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CourseCode = table.Column<string>(nullable: false),
+                    CourseTitle = table.Column<string>(nullable: false),
+                    CourseCredit = table.Column<int>(nullable: false),
+                    SemesterNoSemesterId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Course", x => x.CourseId);
+                    table.ForeignKey(
+                        name: "FK_Course_Semester_SemesterNoSemesterId",
+                        column: x => x.SemesterNoSemesterId,
+                        principalTable: "Semester",
+                        principalColumn: "SemesterId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Student",
                 columns: table => new
                 {
@@ -257,16 +266,42 @@ namespace App.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Offer",
+                columns: table => new
+                {
+                    OfferId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    DesiredCourseCourseId = table.Column<int>(nullable: true),
+                    OfferedCourseCourseId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Offer", x => x.OfferId);
+                    table.ForeignKey(
+                        name: "FK_Offer_Course_DesiredCourseCourseId",
+                        column: x => x.DesiredCourseCourseId,
+                        principalTable: "Course",
+                        principalColumn: "CourseId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Offer_Course_OfferedCourseCourseId",
+                        column: x => x.OfferedCourseCourseId,
+                        principalTable: "Course",
+                        principalColumn: "CourseId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Enrollment",
                 columns: table => new
                 {
                     EnrollStudentId = table.Column<int>(nullable: false),
                     EnrollCourseId = table.Column<int>(nullable: false),
                     EnrollmentId = table.Column<int>(nullable: false),
+                    SemesterId = table.Column<int>(nullable: true),
                     IsRetakeCourse = table.Column<bool>(nullable: false),
                     Batch = table.Column<string>(nullable: true),
-                    Section = table.Column<string>(nullable: true),
-                    SemesterId = table.Column<int>(nullable: true)
+                    Section = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -330,6 +365,11 @@ namespace App.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Course_SemesterNoSemesterId",
+                table: "Course",
+                column: "SemesterNoSemesterId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Enrollment_EnrollCourseId",
                 table: "Enrollment",
                 column: "EnrollCourseId");
@@ -338,6 +378,16 @@ namespace App.Migrations
                 name: "IX_Enrollment_SemesterId",
                 table: "Enrollment",
                 column: "SemesterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Offer_DesiredCourseCourseId",
+                table: "Offer",
+                column: "DesiredCourseCourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Offer_OfferedCourseCourseId",
+                table: "Offer",
+                column: "OfferedCourseCourseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Student_RegistrationId",
@@ -377,16 +427,19 @@ namespace App.Migrations
                 name: "Offer");
 
             migrationBuilder.DropTable(
+                name: "OfficerReg");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "Student");
 
             migrationBuilder.DropTable(
-                name: "Student");
+                name: "Course");
 
             migrationBuilder.DropTable(
                 name: "Registration");

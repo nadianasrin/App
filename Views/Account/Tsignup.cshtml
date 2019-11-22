@@ -1,4 +1,4 @@
-@model Registration
+@model app.Models.OfficerReg
 
 @{
     ViewData["Title"] = "Registration";
@@ -12,48 +12,35 @@
                     <div class="card-content">
                         <div class="col s6 l5">
                             <img id="info-svg-signup" width="500" class="responsive-img"
-                                 src="~/img/undraw_personal_information_962o.svg" />
+                                src="~/img/undraw_personal_information_962o.svg" />
                         </div>
                         <div class="col s6 l5" id="info-input-field">
                         <form method="POST">
+                        
                             <div asp-validation-summary="All" class="red-text text-darken-1"></div>
-                             <input asp-for="Role" type="text" value="Student" hidden>
+                           <input asp-for="Role" type="text" value="Officer" hidden>
                             <div class="row">
                                 <div class="input-field col s12 l12">
-                                    <input placeholder="161-35-0000" asp-for="StudentVarsityId" type="text" class="validate" required>
-                                    <label asp-for="StudentVarsityId">ID</label>
-                                     <span class="red-text text-darken-1" asp-validation-for="StudentVarsityId"></span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12 l12">
-                                    <input placeholder="Name" asp-for="StudentFullName" type="text" class="validate" required>
-                                    <label asp-for="StudentFullName">Name</label>
-                                     <span class="red-text text-darken-1" asp-validation-for="StudentFullName"></span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12 l12">
-                                    <input placeholder="example00-0000@diu.edu.bd" asp-for="RegUserEmail" type="email"
+                                    <input placeholder="example@gmail.com" asp-for="OfficerEmail" type="email"
                                         class="validate" required>
-                                    <label asp-for="RegUserEmail">Email</label>
-                                    <span class="red-text text-darken-1" asp-validation-for="RegUserEmail"></span>
+                                    <label asp-for="OfficerEmail">Email</label>
+                                    <span class="red-text text-darken-1" asp-validation-for="OfficerEmail"></span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12 l12">
-                                    <input placeholder="At least 6 digit" asp-for="RegUserPassword" type="password"
+                                    <input placeholder="At least 6 digit" asp-for="OfficerPassword" type="password"
                                         class="validate">
-                                    <label asp-for="RegUserPassword">Password</label>
-                                    <span class="red-text text-darken-1" asp-validation-for="RegUserPassword"></span>
+                                    <label asp-for="OfficerPassword">Password</label>
+                                    <span class="red-text text-darken-1" asp-validation-for="OfficerPassword"></span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12 l12">
-                                    <input placeholder="At least 6 digit" asp-for="ConfirmPassword" type="password"
+                                    <input placeholder="At least 6 digit" asp-for="OfficerConfirmPassword" type="password"
                                         class="validate">
-                                    <label asp-for="ConfirmPassword">Confirm Password</label>
-                                    <span class="red-text text-darken-1" asp-validation-for="ConfirmPassword"></span>
+                                    <label asp-for="OfficerConfirmPassword">Confirm Password</label>
+                                    <span class="red-text text-darken-1" asp-validation-for="OfficerConfirmPassword"></span>
                                 </div>
                             </div>
                         <div class="row">
@@ -61,15 +48,14 @@
                                 <button type="submit" class="btn purple darken-4">Register</button>
                             </div>
                         </div>
-                       
-                            </form>
+                        </form>
                             <div class="row">
                                 <div class="center-align">
                                     <span class="clink">Already have an account?&nbsp; 
                                         <a asp-controller="account" asp-action="signin">SignIn</a></span><br>
                                 </div>
                             </div>
-                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>

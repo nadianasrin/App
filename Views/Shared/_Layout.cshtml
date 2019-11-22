@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager;
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,11 +16,11 @@
 </head>
 
 <body>
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-    </div>
+    @*$1$ <div id="loader-wrapper"> #1#
+    $1$     <div id="loader"></div> #1#
+    $1$     <div class="loader-section section-left"></div> #1#
+    $1$     <div class="loader-section section-right"></div> #1#
+    $1$ </div>*@ 
     <header>
         <nav class="nav-extended nav-fixed purple darken-4 z-depth-2">
             <div class="nav-wrapper">
@@ -27,8 +29,22 @@
                     <i class="material-icons">menu</i>
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a asp-action="signin" asp-controller="account" class="btn-flat" id="square-signin">SignIn</a></li>
-                    <li><a asp-action="signup" asp-controller="account" class="btn-flat" id="square-signup">SignUp</a></li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li><span>Logged in as @User.Identity.Name</span></li>
+                        <li>
+                            <form method="post" asp-action="Logout" asp-controller="Account">
+                                <a onclick="$(this).closest('form').submit();" class="btn-flat white-text" data-position="left" >Logout 
+                                    <i class="material-icons right">logout</i>
+                                </a>
+                            </form>
+                        </li>
+                    }
+                    @if (!SignInManager.IsSignedIn(User))
+                    {
+                        <li><a asp-action="signin" asp-controller="account" class="btn-flat" id="square-signin">SignIn</a></li>
+                        <li><a asp-action="signup" asp-controller="account" class="btn-flat" id="square-signup">SignUp</a></li>
+                    }
                 </ul>
             </div>
         </nav>
@@ -45,6 +61,10 @@
     <script src="~/js/jquery.min.js" asp-append-version="true"></script>
     <script src="~/js/materialize.js" asp-append-version="true"></script>
     <script src="~/js/plugin.js" asp-append-version="true"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
 
      @RenderSection("Scripts", required: false)
 </body>
