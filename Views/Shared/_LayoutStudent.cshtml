@@ -31,21 +31,30 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <li>  
-                        <a asp-action="Logout" asp-controller="Account"><i class="material-icons right">logout</i>Logout</a>
+                    <li><span>Logged in as @User.Identity.Name</span></li>
+                    <li>
+                        <form method="post" asp-action="Logout" asp-controller="Account">
+                            <a onclick="$(this).closest('form').submit();" class="btn-flat white-text" data-position="left" >Logout 
+                                <i class="material-icons right">logout</i>
+                            </a>
+                        </form>
                     </li>
                 }
-                @if(!SignInManager.IsSignedIn(User))
+                @if (!SignInManager.IsSignedIn(User))
                 {
-                    <li><a asp-action="signin" asp-controller="account" class="btn-flat" id="square-signin">SignIn</a></li>
-                    <li><a asp-action="Tsignup" asp-controller="account" class="btn-flat" id="square-signup">SignUp</a></li>
+                    <li>
+                        <a asp-action="signin" asp-controller="account" class="btn-flat" id="square-signin">SignIn</a>
+                    </li>
+                    <li>
+                        <a asp-action="Tsignup" asp-controller="account" class="btn-flat" id="square-signup">SignUp</a>
+                    </li>
                 }
             </ul>
         </div>
     </nav>
     <ul class="sidenav" id="mobile-nav">
         <li>
-            <a asp-action="index" asp-controller="home" ><i class="material-icons right">logout</i>Logout</a>
+            <a asp-action="index" asp-controller="home"><i class="material-icons right">logout</i>Logout</a>
         </li>
     </ul>
 </header>

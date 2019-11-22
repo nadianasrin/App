@@ -142,6 +142,7 @@ namespace App.Controllers
             return View(login);
         }
         
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

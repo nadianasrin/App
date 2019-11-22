@@ -37,7 +37,7 @@
                         <li class="active"><a href="active-enrollment.html">Active Enrollment</a></li>
                         <li>
                         <form method="POST" asp-action="logout" asp-controller="account">
-                            <a onclick="$(this).closest('form').submit();" class="tooltipped" data-tooltip="Logout Admin"><i
+                            <a onclick="$(this).closest('form').submit();"><i
                                 class="material-icons right">exit_to_app</i>Logout @User.Identity.Name</a>
                         </form>
                         </li>

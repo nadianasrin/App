@@ -31,7 +31,14 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <li><a asp-action="Logout" asp-controller="Account" class="btn-flat" id="square-signin">Logout</a></li>
+                        <li><span>Logged in as @User.Identity.Name</span></li>
+                        <li>
+                            <form method="post" asp-action="Logout" asp-controller="Account">
+                                <a onclick="$(this).closest('form').submit();" class="btn-flat white-text" data-position="left" >Logout 
+                                    <i class="material-icons right">logout</i>
+                                </a>
+                            </form>
+                        </li>
                     }
                     @if (!SignInManager.IsSignedIn(User))
                     {
