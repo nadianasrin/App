@@ -31,7 +31,7 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <li><a asp-action="index" asp-controller="home" class="btn-flat" id="square-signin">Logout</a></li>
+                        <li><a asp-action="Logout" asp-controller="Account" class="btn-flat" id="square-signin">Logout</a></li>
                     }
                     @if (!SignInManager.IsSignedIn(User))
                     {
