@@ -16,13 +16,8 @@
                         </div>
                         <div class="col s6 l5" id="info-input-field">
                         <form method="POST">
-                        <div asp-validation-summary="All" class="red-text text-darken-1"></div>
-                            <div class="row">
-                                <div class="input-field col s12 l12">
-                                    <input asp-for="Role" type="text" value="Student" readonly>
-                                    <label asp-for="Role">Role</label>
-                                </div>
-                            </div>
+                            <div asp-validation-summary="All" class="red-text text-darken-1"></div>
+                             <input asp-for="Role" type="text" value="Student" hidden>
                             <div class="row">
                                 <div class="input-field col s12 l12">
                                     <input placeholder="161-35-0000" asp-for="StudentVarsityId" type="text" class="validate" required>

@@ -26,15 +26,8 @@ using App.Models;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 3 "E:\app\Views\_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7b15d89a7066e817401cd7c0c167b9c30c990256", @"/Views/Teacher/EnrolledStudent.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f38d0e844446056536387551644716fedc5abf6a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c41e0807bf104a62f0a2589b9a563e608abb728e", @"/Views/_ViewImports.cshtml")]
     public class Views_Teacher_EnrolledStudent : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Semester>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -81,7 +74,7 @@ using Microsoft.AspNetCore.Identity;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n\r\n<div class=\"row\">\r\n    <div class=\"card col s12 l8 offset-l2 offset-m1 card-border z-depth-2\">\r\n        <div class=\"card-content\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b15d89a7066e817401cd7c0c167b9c30c9902566268", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b15d89a7066e817401cd7c0c167b9c30c9902566117", async() => {
                 WriteLiteral(@"
             <div class=""col s12 l12"">
                 <h5>Active/ Inactive enrollment form for students to do the course registration.</h5>
@@ -97,7 +90,7 @@ using Microsoft.AspNetCore.Identity;
                     <div class=""input-field col s8"">
                         <select id=""select"" name=""select"">
                             ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b15d89a7066e817401cd7c0c167b9c30c9902567184", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b15d89a7066e817401cd7c0c167b9c30c9902567033", async() => {
                     WriteLiteral("Choose your option");
                 }
                 );
@@ -119,7 +112,7 @@ using Microsoft.AspNetCore.Identity;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b15d89a7066e817401cd7c0c167b9c30c9902569093", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b15d89a7066e817401cd7c0c167b9c30c9902568942", async() => {
                     WriteLiteral(@"
                                 <script>
                                     var sem1 = ""Spring "";
@@ -143,7 +136,7 @@ using Microsoft.AspNetCore.Identity;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b15d89a7066e817401cd7c0c167b9c30c99025610830", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b15d89a7066e817401cd7c0c167b9c30c99025610679", async() => {
                     WriteLiteral(@"
                                 <script>var sem2 = ""Summer "";
                                     var today = new Date();
@@ -165,7 +158,7 @@ using Microsoft.AspNetCore.Identity;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b15d89a7066e817401cd7c0c167b9c30c99025612496", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b15d89a7066e817401cd7c0c167b9c30c99025612345", async() => {
                     WriteLiteral(@"
                                 <script>var sem3 = ""Fall "";
                                     var today = new Date();

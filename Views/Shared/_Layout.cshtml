@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager;
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -27,8 +29,15 @@
                     <i class="material-icons">menu</i>
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a asp-action="signin" asp-controller="account" class="btn-flat" id="square-signin">SignIn</a></li>
-                    <li><a asp-action="signup" asp-controller="account" class="btn-flat" id="square-signup">SignUp</a></li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li><a asp-action="index" asp-controller="home" class="btn-flat" id="square-signin">Logout</a></li>
+                    }
+                    @if (!SignInManager.IsSignedIn(User))
+                    {
+                        <li><a asp-action="signin" asp-controller="account" class="btn-flat" id="square-signin">SignIn</a></li>
+                        <li><a asp-action="signup" asp-controller="account" class="btn-flat" id="square-signup">SignUp</a></li>
+                    }
                 </ul>
             </div>
         </nav>
