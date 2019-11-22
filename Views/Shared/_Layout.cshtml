@@ -16,11 +16,11 @@
 </head>
 
 <body>
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-    </div>
+    @*$1$ <div id="loader-wrapper"> #1#
+    $1$     <div id="loader"></div> #1#
+    $1$     <div class="loader-section section-left"></div> #1#
+    $1$     <div class="loader-section section-right"></div> #1#
+    $1$ </div>*@ 
     <header>
         <nav class="nav-extended nav-fixed purple darken-4 z-depth-2">
             <div class="nav-wrapper">
@@ -54,6 +54,10 @@
     <script src="~/js/jquery.min.js" asp-append-version="true"></script>
     <script src="~/js/materialize.js" asp-append-version="true"></script>
     <script src="~/js/plugin.js" asp-append-version="true"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
 
      @RenderSection("Scripts", required: false)
 </body>
