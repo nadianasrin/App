@@ -8,7 +8,6 @@ namespace App.Models
         [Key]
         public int StudentId { get; set; }
         public Registration Registration { get; set; }
-        [Required]
         public Semester Semester { get; set; }
         public List<Enrollment> ListOfEnrollmentStudent { get; set; }
 

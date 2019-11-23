@@ -10,7 +10,6 @@ namespace app.Models
         [DataType(DataType.EmailAddress)]
         public string OfficerEmail { get; set; }
         public string Role { get; set; }
-
         [Required]
         [DataType(DataType.Password)]
         public string OfficerPassword { get; set; }

@@ -223,8 +223,9 @@ namespace App.Migrations
                 {
                     CourseId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CourseCode = table.Column<string>(nullable: false),
-                    CourseTitle = table.Column<string>(nullable: false),
+                    CourseCode = table.Column<string>(nullable: true),
+                    SemesterNumber = table.Column<string>(nullable: true),
+                    CourseTitle = table.Column<string>(nullable: true),
                     CourseCredit = table.Column<int>(nullable: false),
                     SemesterNoSemesterId = table.Column<int>(nullable: true)
                 },
@@ -246,7 +247,7 @@ namespace App.Migrations
                     StudentId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     RegistrationId = table.Column<string>(nullable: true),
-                    SemesterId = table.Column<int>(nullable: false)
+                    SemesterId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -262,7 +263,7 @@ namespace App.Migrations
                         column: x => x.SemesterId,
                         principalTable: "Semester",
                         principalColumn: "SemesterId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191121144606_InitialCreate")]
+    [Migration("20191123115354_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,18 +98,19 @@ namespace App.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CourseCode")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("CourseCredit")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CourseTitle")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("SemesterNoSemesterId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("SemesterNumber")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("CourseId");
 
@@ -258,7 +259,7 @@ namespace App.Migrations
                     b.Property<string>("RegistrationId")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SemesterId")
+                    b.Property<int?>("SemesterId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("StudentId");
@@ -468,9 +469,7 @@ namespace App.Migrations
 
                     b.HasOne("App.Models.Semester", "Semester")
                         .WithMany()
-                        .HasForeignKey("SemesterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SemesterId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
