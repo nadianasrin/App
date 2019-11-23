@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "E:\\app\\App.csproj",
+    "projectUniqueName": "E:\\App\\App.csproj",
     "projectName": "App",
-    "projectPath": "E:\\app\\App.csproj",
-    "outputPath": "E:\\app\\obj\\",
+    "projectPath": "E:\\App\\App.csproj",
+    "outputPath": "E:\\App\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
