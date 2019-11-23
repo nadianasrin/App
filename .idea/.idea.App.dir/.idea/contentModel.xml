@@ -11,17 +11,11 @@
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
-      <e p="cadetkid.db" t="Include" />
       <e p="Controllers" t="Include">
         <e p="AccountController.cs" t="Include" />
         <e p="HomeController.cs" t="Include" />
         <e p="OfficerController.cs" t="Include" />
         <e p="StudentController.cs" t="Include" />
-      </e>
-      <e p="Migrations" t="Include">
-        <e p="20191123115354_InitialCreate.cs" t="Include" />
-        <e p="20191123115354_InitialCreate.Designer.cs" t="Include" />
-        <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
         <e p="ApplicationDbContext.cs" t="Include" />

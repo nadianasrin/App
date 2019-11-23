@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191123115354_InitialCreate")]
+    [Migration("20191123163755_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,6 +138,9 @@ namespace App.Migrations
 
                     b.Property<string>("Section")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("SectionCapacity")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("SemesterId")
                         .HasColumnType("INTEGER");

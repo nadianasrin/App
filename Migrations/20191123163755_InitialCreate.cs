@@ -302,7 +302,8 @@ namespace App.Migrations
                     SemesterId = table.Column<int>(nullable: true),
                     IsRetakeCourse = table.Column<bool>(nullable: false),
                     Batch = table.Column<string>(nullable: true),
-                    Section = table.Column<string>(nullable: true)
+                    Section = table.Column<string>(nullable: true),
+                    SectionCapacity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

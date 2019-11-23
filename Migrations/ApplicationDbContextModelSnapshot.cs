@@ -137,6 +137,9 @@ namespace App.Migrations
                     b.Property<string>("Section")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("SectionCapacity")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("SemesterId")
                         .HasColumnType("INTEGER");
 

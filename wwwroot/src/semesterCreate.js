@@ -12,7 +12,7 @@
                 formActiveStatus = "Inactive";
             }
         });
-        var semesterName = $('#SemesterName option:selected').text();
+        var semesterName = $('#semester option:selected');
         
         console.log(formActiveStatus, semesterName);
     })

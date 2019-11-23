@@ -17,6 +17,7 @@ namespace App.Models
         public bool IsRetakeCourse { get; set; }
         public string Batch { get; set; }
         public string Section { get; set; }
+        public int SectionCapacity { get; set; }
         
         [NotMapped]
         public List<SelectListItem> Batches = new List<SelectListItem>
@@ -32,6 +33,13 @@ namespace App.Models
             new SelectListItem{Value = "batch28", Text = "Batch 28"},
             new SelectListItem{Value = "batch29", Text = "Batch 29"},
             new SelectListItem{Value = "batch30", Text = "Batch 30"}
+        };
+        
+        [NotMapped]
+        public List<SelectListItem> Sections = new List<SelectListItem>
+        {
+            new SelectListItem{Value = "A", Text = "A"},
+            new SelectListItem{Value = "B", Text = "B"}
         };
     }
 }
