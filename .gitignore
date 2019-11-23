@@ -19,3 +19,9 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
