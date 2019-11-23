@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Controllers
 {
-    public class TeacherController : Controller
+    public class OfficerController : Controller
     {
 
          private readonly ApplicationDbContext _context;
 
-        public TeacherController(ApplicationDbContext context)
+        public OfficerController(ApplicationDbContext context)
         {
             _context = context;
         }

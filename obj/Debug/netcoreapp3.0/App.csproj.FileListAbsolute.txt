@@ -145,7 +145,6 @@ E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LayoutStudent.cshtml.g.cs
 E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LayoutTeacher.cshtml.g.cs
 E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Teacher\EnrolledStudent.cshtml.g.cs
 E:\app\obj\Debug\netcoreapp3.0\Razor\Views\_ViewImports.cshtml.g.cs
 E:\app\obj\Debug\netcoreapp3.0\Razor\Views\_ViewStart.cshtml.g.cs
 E:\app\obj\Debug\netcoreapp3.0\App.RazorTargetAssemblyInfo.cache
@@ -155,3 +154,4 @@ E:\app\obj\Debug\netcoreapp3.0\App.csproj.CopyComplete
 E:\app\obj\Debug\netcoreapp3.0\App.dll
 E:\app\obj\Debug\netcoreapp3.0\App.pdb
 E:\app\obj\Debug\netcoreapp3.0\Razor\Views\Student\index.cshtml.g.cs
+E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Officer\EnrolledStudent.cshtml.g.cs
