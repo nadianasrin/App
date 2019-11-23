@@ -24,3 +24,9 @@
                     sometimes by accident, sometimes on purpose (injected humour and the like</p>
             </div>
         </div>
+        
+        @section Scripts {
+            @{
+                await Html.RenderPartialAsync("_LayoutMagic");
+            }
+        }
