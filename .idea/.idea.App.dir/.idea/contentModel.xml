@@ -11,15 +11,23 @@
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
+      <e p="cadetkid.db" t="Include" />
       <e p="Controllers" t="Include">
         <e p="AccountController.cs" t="Include" />
         <e p="HomeController.cs" t="Include" />
         <e p="OfficerController.cs" t="Include" />
         <e p="StudentController.cs" t="Include" />
       </e>
+      <e p="Migrations" t="Include">
+        <e p="20191123163755_InitialCreate.cs" t="Include" />
+        <e p="20191123163755_InitialCreate.Designer.cs" t="Include" />
+        <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
+      </e>
       <e p="Models" t="Include">
         <e p="ApplicationDbContext.cs" t="Include" />
         <e p="ApplicationUser.cs" t="Include" />
+        <e p="Batch.cs" t="Include" />
+        <e p="BatchSection.cs" t="Include" />
         <e p="Course.cs" t="Include" />
         <e p="Enrollment.cs" t="Include" />
         <e p="ErrorViewModel.cs" t="Include" />
@@ -28,6 +36,7 @@
         <e p="Officer.cs" t="Include" />
         <e p="OfficerReg.cs" t="Include" />
         <e p="Registration.cs" t="Include" />
+        <e p="Section.cs" t="Include" />
         <e p="Semester.cs" t="Include" />
         <e p="Student.cs" t="Include" />
       </e>

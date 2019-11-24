@@ -4,7 +4,7 @@
         e.preventDefault();
         var formActiveStatus;
         $('#isActiveForm').change(function () {
-            if($(this).prop("checked") === true){
+            if($(this).prop("checked")){
                 formActiveStatus = "Active";
             }
             else

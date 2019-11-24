@@ -56,7 +56,13 @@ namespace App.Controllers
             {
                 return Json(ex.Message);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> createSemester()
+        {
             
+            return null;
         }
     }
 }
