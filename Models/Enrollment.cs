@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace App.Models
 {
@@ -12,7 +15,5 @@ namespace App.Models
         public Course EnrollCourses { get; set; }
         public Semester Semester { get; set; }
         public bool IsRetakeCourse { get; set; }
-        public string Batch { get; set; }
-        public string Section { get; set; }
     }
 }

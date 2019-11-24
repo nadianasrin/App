@@ -50,6 +50,19 @@ namespace App.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Batch",
+                columns: table => new
+                {
+                    BatchId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    BatchName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Batch", x => x.BatchId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Login",
                 columns: table => new
                 {
@@ -94,6 +107,20 @@ namespace App.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Registration", x => x.RegistrationId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Section",
+                columns: table => new
+                {
+                    SectionId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    SectionName = table.Column<string>(nullable: true),
+                    SectionCapacity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Section", x => x.SectionId);
                 });
 
             migrationBuilder.CreateTable(
@@ -218,13 +245,40 @@ namespace App.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BatchSection",
+                columns: table => new
+                {
+                    BatchId = table.Column<int>(nullable: false),
+                    SectionId = table.Column<int>(nullable: false),
+                    BatchSectioId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BatchSection", x => new { x.BatchId, x.SectionId });
+                    table.UniqueConstraint("AK_BatchSection_BatchSectioId", x => x.BatchSectioId);
+                    table.ForeignKey(
+                        name: "FK_BatchSection_Batch_BatchId",
+                        column: x => x.BatchId,
+                        principalTable: "Batch",
+                        principalColumn: "BatchId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BatchSection_Section_SectionId",
+                        column: x => x.SectionId,
+                        principalTable: "Section",
+                        principalColumn: "SectionId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Course",
                 columns: table => new
                 {
                     CourseId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CourseCode = table.Column<string>(nullable: false),
-                    CourseTitle = table.Column<string>(nullable: false),
+                    CourseCode = table.Column<string>(nullable: true),
+                    SemesterNumber = table.Column<string>(nullable: true),
+                    CourseTitle = table.Column<string>(nullable: true),
                     CourseCredit = table.Column<int>(nullable: false),
                     SemesterNoSemesterId = table.Column<int>(nullable: true)
                 },
@@ -240,13 +294,39 @@ namespace App.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Officer",
+                columns: table => new
+                {
+                    SerialId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    OfficerRegOfficerId = table.Column<string>(nullable: true),
+                    OfficerSemesterSemesterId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Officer", x => x.SerialId);
+                    table.ForeignKey(
+                        name: "FK_Officer_OfficerReg_OfficerRegOfficerId",
+                        column: x => x.OfficerRegOfficerId,
+                        principalTable: "OfficerReg",
+                        principalColumn: "OfficerId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Officer_Semester_OfficerSemesterSemesterId",
+                        column: x => x.OfficerSemesterSemesterId,
+                        principalTable: "Semester",
+                        principalColumn: "SemesterId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Student",
                 columns: table => new
                 {
                     StudentId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     RegistrationId = table.Column<string>(nullable: true),
-                    SemesterId = table.Column<int>(nullable: false)
+                    SemesterId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -262,7 +342,7 @@ namespace App.Migrations
                         column: x => x.SemesterId,
                         principalTable: "Semester",
                         principalColumn: "SemesterId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -300,8 +380,7 @@ namespace App.Migrations
                     EnrollmentId = table.Column<int>(nullable: false),
                     SemesterId = table.Column<int>(nullable: true),
                     IsRetakeCourse = table.Column<bool>(nullable: false),
-                    Batch = table.Column<string>(nullable: true),
-                    Section = table.Column<string>(nullable: true)
+                    OfficerSerialId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -319,6 +398,12 @@ namespace App.Migrations
                         principalTable: "Student",
                         principalColumn: "StudentId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Enrollment_Officer_OfficerSerialId",
+                        column: x => x.OfficerSerialId,
+                        principalTable: "Officer",
+                        principalColumn: "SerialId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Enrollment_Semester_SemesterId",
                         column: x => x.SemesterId,
@@ -365,6 +450,11 @@ namespace App.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_BatchSection_SectionId",
+                table: "BatchSection",
+                column: "SectionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Course_SemesterNoSemesterId",
                 table: "Course",
                 column: "SemesterNoSemesterId");
@@ -373,6 +463,11 @@ namespace App.Migrations
                 name: "IX_Enrollment_EnrollCourseId",
                 table: "Enrollment",
                 column: "EnrollCourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Enrollment_OfficerSerialId",
+                table: "Enrollment",
+                column: "OfficerSerialId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Enrollment_SemesterId",
@@ -388,6 +483,16 @@ namespace App.Migrations
                 name: "IX_Offer_OfferedCourseCourseId",
                 table: "Offer",
                 column: "OfferedCourseCourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Officer_OfficerRegOfficerId",
+                table: "Officer",
+                column: "OfficerRegOfficerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Officer_OfficerSemesterSemesterId",
+                table: "Officer",
+                column: "OfficerSemesterSemesterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Student_RegistrationId",
@@ -418,6 +523,9 @@ namespace App.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "BatchSection");
+
+            migrationBuilder.DropTable(
                 name: "Enrollment");
 
             migrationBuilder.DropTable(
@@ -427,22 +535,31 @@ namespace App.Migrations
                 name: "Offer");
 
             migrationBuilder.DropTable(
-                name: "OfficerReg");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "Batch");
+
+            migrationBuilder.DropTable(
+                name: "Section");
+
+            migrationBuilder.DropTable(
                 name: "Student");
+
+            migrationBuilder.DropTable(
+                name: "Officer");
 
             migrationBuilder.DropTable(
                 name: "Course");
 
             migrationBuilder.DropTable(
                 name: "Registration");
+
+            migrationBuilder.DropTable(
+                name: "OfficerReg");
 
             migrationBuilder.DropTable(
                 name: "Semester");

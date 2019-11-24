@@ -41,6 +41,7 @@ namespace App.Controllers
         {
             return _userManager.FindByNameAsync(username).Result.Role;
         }
+
         private string getUserId(string username)
         {
             return _userManager.FindByNameAsync(username).Result.Id;
@@ -59,13 +60,20 @@ namespace App.Controllers
                     Role = registration.Role,
                     UserName = registration.StudentVarsityId,
                     Student_FullName = registration.StudentFullName,
+                    
+                    Student_VarsityId = registration.StudentVarsityId,
                     Email = registration.RegUserEmail
                 };
                 var result = await _userManager.CreateAsync(user, registration.RegUserPassword);
 
                 if (result.Succeeded)
                 {
+                    var student = new Student
+                    {
+                        Registration = registration
+                    };
                     _context.Add(registration);
+                    _context.Add(student);
                     await _context.SaveChangesAsync();
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("index", "student", new {sid = registration.RegistrationId});
@@ -101,7 +109,12 @@ namespace App.Controllers
 
                 if (result.Succeeded)
                 {
+                    var officer = new Officer
+                    {
+                        OfficerReg = officerreg
+                    };
                     _context.Add(officerreg);
+                    _context.Add(officer);
                     await _context.SaveChangesAsync();
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("enrolledstudent", "Officer", new {oid = officerreg.OfficerId});
@@ -130,7 +143,7 @@ namespace App.Controllers
                     var userRole = getUserRole(userName);
                     if (userRole == "Student")
                     {
-                        return RedirectToAction("index", "Student",  new { sid = getUserId(userName) });
+                        return RedirectToAction("index", "Student", new {sid = getUserId(userName)});
                     }
 
                     return RedirectToAction("enrolledstudent", "officer", new {oid = getUserId(userName)});
@@ -141,7 +154,7 @@ namespace App.Controllers
 
             return View(login);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Logout()
         {

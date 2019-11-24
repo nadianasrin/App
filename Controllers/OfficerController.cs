@@ -1,5 +1,7 @@
+using System;
 using System.Threading.Tasks;
 using App.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +11,30 @@ namespace App.Controllers
     {
 
          private readonly ApplicationDbContext _context;
+         private readonly UserManager<ApplicationUser> _userManager;
 
-        public OfficerController(ApplicationDbContext context)
+         public OfficerController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+         {
+             _context = context;
+             _userManager = userManager;
+         }
+
+        public string getUserId()
         {
-            _context = context;
+            return _userManager.GetUserId(HttpContext.User);
+        }
+
+        public string getUserRole(string userId)
+        {
+            try
+            {
+                var role = _context.OfficerReg.Find(userId);
+                return role.Role;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
         public IActionResult EnrolledStudent()
         {
@@ -34,7 +56,13 @@ namespace App.Controllers
             {
                 return Json(ex.Message);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> createSemester()
+        {
             
+            return null;
         }
     }
 }

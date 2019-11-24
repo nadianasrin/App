@@ -7,7 +7,6 @@
 
 
 $(document).ready(function() {
-  $('.tooltipped').tooltip();
   $('.sidenav').sidenav();
   $('select').formSelect();
   $('.modal').modal();

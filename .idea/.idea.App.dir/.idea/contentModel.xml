@@ -11,38 +11,30 @@
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
-      <e p="cadetkid.db" t="Include" />
       <e p="Controllers" t="Include">
         <e p="AccountController.cs" t="Include" />
         <e p="HomeController.cs" t="Include" />
         <e p="OfficerController.cs" t="Include" />
         <e p="StudentController.cs" t="Include" />
       </e>
-      <e p="Migrations" t="Include">
-        <e p="20191121144606_InitialCreate.cs" t="Include" />
-        <e p="20191121144606_InitialCreate.Designer.cs" t="Include" />
-        <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
-      </e>
       <e p="Models" t="Include">
         <e p="ApplicationDbContext.cs" t="Include" />
         <e p="ApplicationUser.cs" t="Include" />
+        <e p="Batch.cs" t="Include" />
+        <e p="BatchSection.cs" t="Include" />
         <e p="Course.cs" t="Include" />
         <e p="Enrollment.cs" t="Include" />
         <e p="ErrorViewModel.cs" t="Include" />
         <e p="Login.cs" t="Include" />
         <e p="Offer.cs" t="Include" />
+        <e p="Officer.cs" t="Include" />
         <e p="OfficerReg.cs" t="Include" />
         <e p="Registration.cs" t="Include" />
+        <e p="Section.cs" t="Include" />
         <e p="Semester.cs" t="Include" />
         <e p="Student.cs" t="Include" />
       </e>
-      <e p="obj" t="ExcludeRecursive">
-        <e p="Debug" t="Include">
-          <e p="netcoreapp3.0" t="Include">
-            <e p="App.AssemblyInfo.cs" t="Include" />
-          </e>
-        </e>
-      </e>
+      <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Program.cs" t="Include" />
       <e p="Properties" t="Include">
@@ -66,6 +58,7 @@
         </e>
         <e p="Shared" t="Include">
           <e p="_Layout.cshtml" t="Include" />
+          <e p="_LayoutMagic.cshtml" t="Include" />
           <e p="_LayoutStudent.cshtml" t="Include" />
           <e p="_LayoutTeacher.cshtml" t="Include" />
           <e p="_ValidationScriptsPartial.cshtml" t="Include" />
@@ -151,6 +144,9 @@
             <e p="jquery.validate.unobtrusive.min.js" t="Include" />
             <e p="LICENSE.txt" t="Include" />
           </e>
+        </e>
+        <e p="src" t="Include">
+          <e p="semesterCreate.js" t="Include" />
         </e>
       </e>
     </e>

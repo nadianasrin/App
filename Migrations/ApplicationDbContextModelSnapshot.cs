@@ -89,6 +89,40 @@ namespace App.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("App.Models.Batch", b =>
+                {
+                    b.Property<int>("BatchId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("BatchName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("BatchId");
+
+                    b.ToTable("Batch");
+                });
+
+            modelBuilder.Entity("App.Models.BatchSection", b =>
+                {
+                    b.Property<int>("BatchId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SectionId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BatchSectioId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("BatchId", "SectionId");
+
+                    b.HasAlternateKey("BatchSectioId");
+
+                    b.HasIndex("SectionId");
+
+                    b.ToTable("BatchSection");
+                });
+
             modelBuilder.Entity("App.Models.Course", b =>
                 {
                     b.Property<int>("CourseId")
@@ -96,18 +130,19 @@ namespace App.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CourseCode")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("CourseCredit")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CourseTitle")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("SemesterNoSemesterId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("SemesterNumber")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("CourseId");
 
@@ -124,17 +159,14 @@ namespace App.Migrations
                     b.Property<int>("EnrollCourseId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Batch")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("EnrollmentId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsRetakeCourse")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Section")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("OfficerSerialId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("SemesterId")
                         .HasColumnType("INTEGER");
@@ -144,6 +176,8 @@ namespace App.Migrations
                     b.HasAlternateKey("EnrollmentId");
 
                     b.HasIndex("EnrollCourseId");
+
+                    b.HasIndex("OfficerSerialId");
 
                     b.HasIndex("SemesterId");
 
@@ -193,6 +227,27 @@ namespace App.Migrations
                     b.ToTable("Offer");
                 });
 
+            modelBuilder.Entity("App.Models.Officer", b =>
+                {
+                    b.Property<int>("SerialId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("OfficerRegOfficerId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("OfficerSemesterSemesterId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("SerialId");
+
+                    b.HasIndex("OfficerRegOfficerId");
+
+                    b.HasIndex("OfficerSemesterSemesterId");
+
+                    b.ToTable("Officer");
+                });
+
             modelBuilder.Entity("App.Models.Registration", b =>
                 {
                     b.Property<string>("RegistrationId")
@@ -227,6 +282,23 @@ namespace App.Migrations
                     b.ToTable("Registration");
                 });
 
+            modelBuilder.Entity("App.Models.Section", b =>
+                {
+                    b.Property<int>("SectionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SectionCapacity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SectionName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("SectionId");
+
+                    b.ToTable("Section");
+                });
+
             modelBuilder.Entity("App.Models.Semester", b =>
                 {
                     b.Property<int>("SemesterId")
@@ -256,7 +328,7 @@ namespace App.Migrations
                     b.Property<string>("RegistrationId")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SemesterId")
+                    b.Property<int?>("SemesterId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("StudentId");
@@ -421,6 +493,21 @@ namespace App.Migrations
                     b.ToTable("OfficerReg");
                 });
 
+            modelBuilder.Entity("App.Models.BatchSection", b =>
+                {
+                    b.HasOne("App.Models.Batch", "Batches")
+                        .WithMany("ListOfBatches")
+                        .HasForeignKey("BatchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Models.Section", "Sections")
+                        .WithMany("ListOfSections")
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("App.Models.Course", b =>
                 {
                     b.HasOne("App.Models.Semester", "SemesterNo")
@@ -442,6 +529,10 @@ namespace App.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("App.Models.Officer", null)
+                        .WithMany("ListOfEnrollmentStudent")
+                        .HasForeignKey("OfficerSerialId");
+
                     b.HasOne("App.Models.Semester", "Semester")
                         .WithMany("ListOfEnrollmentSemester")
                         .HasForeignKey("SemesterId");
@@ -458,6 +549,17 @@ namespace App.Migrations
                         .HasForeignKey("OfferedCourseCourseId");
                 });
 
+            modelBuilder.Entity("App.Models.Officer", b =>
+                {
+                    b.HasOne("app.Models.OfficerReg", "OfficerReg")
+                        .WithMany()
+                        .HasForeignKey("OfficerRegOfficerId");
+
+                    b.HasOne("App.Models.Semester", "OfficerSemester")
+                        .WithMany()
+                        .HasForeignKey("OfficerSemesterSemesterId");
+                });
+
             modelBuilder.Entity("App.Models.Student", b =>
                 {
                     b.HasOne("App.Models.Registration", "Registration")
@@ -466,9 +568,7 @@ namespace App.Migrations
 
                     b.HasOne("App.Models.Semester", "Semester")
                         .WithMany()
-                        .HasForeignKey("SemesterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SemesterId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

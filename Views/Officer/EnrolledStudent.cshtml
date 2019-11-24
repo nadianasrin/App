@@ -8,11 +8,11 @@
 <div class="row">
     <div class="card col s12 l8 offset-l2 offset-m1 card-border z-depth-2">
         <div class="card-content">
-            <form method="POST">
-            <div class="col s12 l12">
+        <div class="col s12 l12">
+            <form method="POST" id="semesterForm">
                 <h5>Active/ Inactive enrollment form for students to do the course registration.</h5>
                 <div class="switch center-align">
-                    <label id="label-size">
+                    <label id="IsActiveForm">
                         Inactive
                         <input type="checkbox">
                         <span class="lever"></span>
@@ -21,7 +21,7 @@
                 </div><br>
                 <div class="row">
                     <div class="input-field col s8">
-                        <select id="select" name="select">
+                        <select asp-for="SemesterName" name="select">
                             <option value="" disabled selected>Choose your option</option>
                             <option value="Spring" id="spring">
                                 <script>
@@ -52,8 +52,8 @@
                         <button type="submit" class="btn purple darken-4">Update</button>
                     </div>
                 </div>
-            </div>
             </form>
+             </div>
         </div>
     </div>
 </div>
