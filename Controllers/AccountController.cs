@@ -60,7 +60,6 @@ namespace App.Controllers
                     Role = registration.Role,
                     UserName = registration.StudentVarsityId,
                     Student_FullName = registration.StudentFullName,
-                    
                     Student_VarsityId = registration.StudentVarsityId,
                     Email = registration.RegUserEmail
                 };

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191124155610_InitialCreate")]
+    [Migration("20191125172648_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -140,8 +140,8 @@ namespace App.Migrations
                     b.Property<string>("CourseTitle")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("SemesterNoSemesterId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SemesterNoSemesterId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("SemesterNumber")
                         .HasColumnType("TEXT");
@@ -170,8 +170,8 @@ namespace App.Migrations
                     b.Property<int?>("OfficerSerialId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("SemesterId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SemesterId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("EnrollStudentId", "EnrollCourseId");
 
@@ -238,8 +238,8 @@ namespace App.Migrations
                     b.Property<string>("OfficerRegOfficerId")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("OfficerSemesterSemesterId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("OfficerSemesterSemesterId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("SerialId");
 
@@ -303,9 +303,8 @@ namespace App.Migrations
 
             modelBuilder.Entity("App.Models.Semester", b =>
                 {
-                    b.Property<int>("SemesterId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SemesterId")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("IsActiveCourseSuggestion")
                         .HasColumnType("INTEGER");
@@ -330,8 +329,8 @@ namespace App.Migrations
                     b.Property<string>("RegistrationId")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("SemesterId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SemesterId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("StudentId");
 

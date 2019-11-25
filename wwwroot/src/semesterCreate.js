@@ -18,10 +18,12 @@
             {
                 showToast("Something went wrong", "red darken-1");
             }
-            else if(response === "exists")
+            else if(response === "semesterExists")
             {
                 showToast("Semester already exists", "red darken-1");
             }
+            else
+            {}
         })
     });
 });

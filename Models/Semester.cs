@@ -6,7 +6,7 @@ namespace App.Models
     public class Semester
     {
         [Key]
-        public int SemesterId { get; set; }
+        public string SemesterId { get; set; }
         public string SemesterName { get; set; }
         public bool IsActiveForm { get; set; }
         public bool IsActiveCourseSuggestion { get; set; }

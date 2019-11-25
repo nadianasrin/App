@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using App.Models;
 using Microsoft.AspNetCore.Identity;
@@ -46,35 +47,32 @@ namespace App.Controllers
         [HttpPost]
         public async Task<JsonResult> CreateSemester(string sName)
         {
-            var isExistsSemester = _context.Semester.FirstOrDefaultAsync(s => s.SemesterName == sName);
+            var isExistsSemester = _context.Semester.FirstOrDefault(s => s.SemesterName == sName);
+
             try
             {
-                if (isExistsSemester == null)
+                if (isExistsSemester != null)
                 {
-                    var semester = new Semester
-                    {
-                        SemesterName = sName
-                    };
-                    _context.Add(semester);
-                    await _context.SaveChangesAsync();
-                    return Json("success");
+                    return Json("semesterExists");
                 }
-                else
-                {
-                    return Json("exists");
-                }
-
                 if (sName.Contains("Choose"))
                 {
                     return Json("invalidSemester");
                 }
+            
+                var semester = new Semester
+                {
+                    SemesterId = Guid.NewGuid().ToString().Replace("-", ""),
+                    SemesterName = sName
+                };
+                _context.Add(semester);
+                await _context.SaveChangesAsync();
+                return Json("success");
             }
             catch (Exception)
             {
                 return Json("fail");
             }
-
-            return Json("fail");
         }
 
         public async Task<JsonResult> FetchSemesters()

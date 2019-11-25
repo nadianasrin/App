@@ -127,8 +127,7 @@ namespace App.Migrations
                 name: "Semester",
                 columns: table => new
                 {
-                    SemesterId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    SemesterId = table.Column<string>(nullable: false),
                     SemesterName = table.Column<string>(nullable: true),
                     IsActiveForm = table.Column<bool>(nullable: false),
                     IsActiveCourseSuggestion = table.Column<bool>(nullable: false)
@@ -280,7 +279,7 @@ namespace App.Migrations
                     SemesterNumber = table.Column<string>(nullable: true),
                     CourseTitle = table.Column<string>(nullable: true),
                     CourseCredit = table.Column<int>(nullable: false),
-                    SemesterNoSemesterId = table.Column<int>(nullable: true)
+                    SemesterNoSemesterId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -300,7 +299,7 @@ namespace App.Migrations
                     SerialId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     OfficerRegOfficerId = table.Column<string>(nullable: true),
-                    OfficerSemesterSemesterId = table.Column<int>(nullable: true)
+                    OfficerSemesterSemesterId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -326,7 +325,7 @@ namespace App.Migrations
                     StudentId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     RegistrationId = table.Column<string>(nullable: true),
-                    SemesterId = table.Column<int>(nullable: true)
+                    SemesterId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -378,7 +377,7 @@ namespace App.Migrations
                     EnrollStudentId = table.Column<int>(nullable: false),
                     EnrollCourseId = table.Column<int>(nullable: false),
                     EnrollmentId = table.Column<int>(nullable: false),
-                    SemesterId = table.Column<int>(nullable: true),
+                    SemesterId = table.Column<string>(nullable: true),
                     IsRetakeCourse = table.Column<bool>(nullable: false),
                     OfficerSerialId = table.Column<int>(nullable: true)
                 },
