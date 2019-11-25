@@ -48,7 +48,6 @@ namespace App.Controllers
         public async Task<JsonResult> CreateSemester(string sName)
         {
             var isExistsSemester = _context.Semester.FirstOrDefault(s => s.SemesterName == sName);
-
             try
             {
                 if (isExistsSemester != null)

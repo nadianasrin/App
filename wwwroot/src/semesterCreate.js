@@ -12,7 +12,7 @@
             }
             else if(response === "invalidSemester")
             {
-                showToast("Please select a semester", "amber darken-1");
+                showToast("Please select a semester", "amber darken-4");
             }
             else if (response === "fail")
             {
@@ -34,11 +34,13 @@ function FetchSemesters() {
     var semesters = $("#semesterCards");
     $.get('/Officer/FetchSemesters', function (response) {
         console.log(response.length);
-        var messsage = "";
+        var messsage = " <div class=\"center-align\">\n" +
+            "                <h4 class=\"purple-text text-darken-4\">Semesters</h4>\n" +
+            "            </div>";
        for(var i = response.length - 1 ; i >= 0; i--)
        {
            var semesterCard = "<div class=\"col s6 m3\">\n" +
-               "                <div class=\"card z-depth-2\">\n" +
+               "                <div class=\"card z-depth-2 card-border hoverable\">\n" +
                "                    <div class=\"card-image waves-effect waves-block waves-light\">\n" +
                "                        <a href=\"batch22.html\"><img class=\"cimage\" src=\"https://cadetkid.github.io/UI/assets/img/summer.png\"></a>\n" +
                "                    </div>\n" +
