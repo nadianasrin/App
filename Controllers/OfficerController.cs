@@ -46,38 +46,48 @@ namespace App.Controllers
         [HttpPost]
         public async Task<JsonResult> CreateSemester(string sName)
         {
-            //var isExistsSemester = _context.Semester.Any();
+            var isExistsSemester = _context.Semester.FirstOrDefaultAsync(s => s.SemesterName == sName);
             try
             {
+                if (isExistsSemester == null)
+                {
+                    var semester = new Semester
+                    {
+                        SemesterName = sName
+                    };
+                    _context.Add(semester);
+                    await _context.SaveChangesAsync();
+                    return Json("success");
+                }
+                else
+                {
+                    return Json("exists");
+                }
+
                 if (sName.Contains("Choose"))
                 {
-                    return Json("validsemester");
+                    return Json("invalidSemester");
                 }
-                var semester = new Semester
-                {
-                    SemesterName = sName
-                };
-                _context.Add(semester);
-                await _context.SaveChangesAsync();
-                return Json("success");
             }
             catch (Exception)
             {
                 return Json("fail");
             }
+
+            return Json("fail");
         }
 
         public async Task<JsonResult> FetchSemesters()
-        {
-            try
             {
-                var semesters = await _context.Semester.ToListAsync();
-                return Json(semesters);
-            }
-            catch (Exception)
-            {
-                return Json("Fail");
+                try
+                {
+                    var semesters = await _context.Semester.ToListAsync();
+                    return Json(semesters);
+                }
+                catch (Exception)
+                {
+                    return Json("Fail");
+                }
             }
         }
     }
-}

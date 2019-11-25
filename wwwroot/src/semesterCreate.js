@@ -10,13 +10,17 @@
                 showToast("Semester created successfully", "green darken-1");
                 FetchSemesters();
             }
-            else if(response === "validsemester")
+            else if(response === "invalidSemester")
             {
                 showToast("Please select a semester", "amber darken-1");
             }
             else if (response === "fail")
             {
                 showToast("Something went wrong", "red darken-1");
+            }
+            else if(response === "exists")
+            {
+                showToast("Semester already exists", "red darken-1");
             }
         })
     });
