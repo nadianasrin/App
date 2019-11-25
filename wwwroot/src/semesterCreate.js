@@ -37,9 +37,7 @@ function FetchSemesters() {
                "                        <a href=\"batch22.html\"><img class=\"cimage\" src=\"https://cadetkid.github.io/UI/assets/img/summer.png\"></a>\n" +
                "                    </div>\n" +
                "                    <div class=\"card-content\">\n" +
-               "                        <a target='_blank' class=\"btn-floating activator btn-move-up waves-effect waves-light z-depth-4 right\" href=\"/Officer/"+temptid+"/"+response[i]["classroomId"]+"\">" +
-               "                            <i class=\"material-icons\">send</i>\n" +
-               "                        </a>\n" +
+               "                        <span class=\"card-title clink\"><a target=\"_blank\" href=\"/Officer/"+response[i]["semesterId"]+"\">"+response[i]["semesterName"]+"</a><a href=\"#\"><i class=\"material-icons right\">delete</i></a></span>\n" +
                "                    </div>\n" +
                "                </div>\n" +
                "            </div>"
