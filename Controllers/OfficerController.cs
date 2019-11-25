@@ -4,20 +4,20 @@ using App.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace App.Controllers
 {
     public class OfficerController : Controller
     {
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-         private readonly ApplicationDbContext _context;
-         private readonly UserManager<ApplicationUser> _userManager;
-
-         public OfficerController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
-         {
-             _context = context;
-             _userManager = userManager;
-         }
+        public OfficerController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
 
         public string getUserId()
         {
@@ -36,33 +36,58 @@ namespace App.Controllers
                 return null;
             }
         }
+
         public IActionResult EnrolledStudent()
         {
             return View();
         }
-        
-        [HttpGet("/Teacher/getStudentEnrolledCourses")]
-        public async Task<JsonResult> getStudentEnrolledCourses([FromBody]Semester semester)
-        {
-            try
-            {
-                _context.Add(semester);
-                await _context.SaveChangesAsync();
-                var semesters = await _context.Semester.ToListAsync();
 
-                return Json(semesters);
-            }
-            catch (System.Exception ex)
-            {
-                return Json(ex.Message);
-            }
-        }
 
         [HttpPost]
-        public async Task<IActionResult> createSemester()
+        public async Task<JsonResult> CreateSemester(string sName)
         {
-            
-            return null;
+            var isExistsSemester = _context.Semester.FirstOrDefaultAsync(s => s.SemesterName == sName);
+            try
+            {
+                if (isExistsSemester == null)
+                {
+                    var semester = new Semester
+                    {
+                        SemesterName = sName
+                    };
+                    _context.Add(semester);
+                    await _context.SaveChangesAsync();
+                    return Json("success");
+                }
+                else
+                {
+                    return Json("exists");
+                }
+
+                if (sName.Contains("Choose"))
+                {
+                    return Json("invalidSemester");
+                }
+            }
+            catch (Exception)
+            {
+                return Json("fail");
+            }
+
+            return Json("fail");
+        }
+
+        public async Task<JsonResult> FetchSemesters()
+            {
+                try
+                {
+                    var semesters = await _context.Semester.ToListAsync();
+                    return Json(semesters);
+                }
+                catch (Exception)
+                {
+                    return Json("Fail");
+                }
+            }
         }
     }
-}

@@ -8,8 +8,7 @@
 <div class="row">
     <div class="card col s12 l8 offset-l2 offset-m1 card-border z-depth-2">
         <div class="card-content">
-        <div class="col s12 l12">
-            <form method="POST" id="semesterForm">
+            <div class="col s12 l12">
                 <h5>Active/ Inactive enrollment form for students to do the course registration.</h5>
                 <div class="switch center-align">
                     <label id="IsActiveForm">
@@ -19,41 +18,50 @@
                         Active
                     </label>
                 </div><br>
-                <div class="row">
-                    <div class="input-field col s8">
-                        <select asp-for="SemesterName" name="select">
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="Spring" id="spring">
-                                <script>
+                <form method="POST" id="semesterForm">
+                    <div class="row">
+                        <div class="input-field col s8">
+                            <select asp-for="SemesterName" name="select">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="Spring" id="spring">
+                                    <script>
                                     var sem1 = "Spring ";
                                     var today = new Date();
                                     var year = today.getFullYear();
                                     document.getElementById("spring").innerHTML = sem1 + year;
                                 </script>
-                            </option>
-                            <option value="Summer" id="summer">
-                                <script>var sem2 = "Summer ";
+                                </option>
+                                <option value="Summer" id="summer">
+                                    <script>var sem2 = "Summer ";
                                     var today = new Date();
                                     var year = today.getFullYear();
                                     document.getElementById("summer").innerHTML = sem2 + year;</script>
-                            </option>
-                            <option value="Fall" id="fall">
-                                <script>var sem3 = "Fall ";
+                                </option>
+                                <option value="Fall" id="fall">
+                                    <script>var sem3 = "Fall ";
                                     var today = new Date();
                                     var year = today.getFullYear();
                                     document.getElementById("fall").innerHTML = sem3 + year;</script>
-                            </option>
-                        </select>
-                        <label style="font-size: 15px;" class="indigo-text">Select Semester</label>
+                                </option>
+                            </select>
+                            <label style="font-size: 15px;" class="indigo-text">Select Semester</label>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="center-align">
-                        <button type="submit" class="btn purple darken-4">Update</button>
+                    <div class="row">
+                        <div class="center-align">
+                            <button type="submit" class="btn purple darken-4">Create</button>
+                        </div>
                     </div>
-                </div>
-            </form>
-             </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div id="semesterCards"></div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/src/semesterCreate.js"></script>
