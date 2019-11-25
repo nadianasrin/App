@@ -6,9 +6,6 @@
     "projectPath": "E:\\App\\App.csproj",
     "outputPath": "E:\\App\\obj\\",
     "projectStyle": "PackageReference",
-    "fallbackFolders": [
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-    ],
     "originalTargetFrameworks": [
       "netcoreapp3.0"
     ],

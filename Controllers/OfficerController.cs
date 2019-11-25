@@ -4,20 +4,20 @@ using App.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace App.Controllers
 {
     public class OfficerController : Controller
     {
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-         private readonly ApplicationDbContext _context;
-         private readonly UserManager<ApplicationUser> _userManager;
-
-         public OfficerController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
-         {
-             _context = context;
-             _userManager = userManager;
-         }
+        public OfficerController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
 
         public string getUserId()
         {
@@ -36,33 +36,48 @@ namespace App.Controllers
                 return null;
             }
         }
+
         public IActionResult EnrolledStudent()
         {
             return View();
         }
-        
-        [HttpGet("/Teacher/getStudentEnrolledCourses")]
-        public async Task<JsonResult> getStudentEnrolledCourses([FromBody]Semester semester)
+
+
+        [HttpPost]
+        public async Task<JsonResult> CreateSemester(string sName)
         {
+            //var isExistsSemester = _context.Semester.Any();
             try
             {
+                if (sName.Contains("Choose"))
+                {
+                    return Json("validsemester");
+                }
+                var semester = new Semester
+                {
+                    SemesterName = sName
+                };
                 _context.Add(semester);
                 await _context.SaveChangesAsync();
-                var semesters = await _context.Semester.ToListAsync();
-
-                return Json(semesters);
+                return Json("success");
             }
-            catch (System.Exception ex)
+            catch (Exception)
             {
-                return Json(ex.Message);
+                return Json("fail");
             }
         }
 
-        [HttpPost]
-        public async Task<IActionResult> createSemester()
+        public async Task<JsonResult> FetchSemesters()
         {
-            
-            return null;
+            try
+            {
+                var semesters = await _context.Semester.ToListAsync();
+                return Json(semesters);
+            }
+            catch (Exception)
+            {
+                return Json("Fail");
+            }
         }
     }
 }
