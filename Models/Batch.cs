@@ -8,7 +8,7 @@ namespace App.Models
     public class Batch
     {
         [Key]
-        public int BatchId { get; set; }
+        public string BatchId { get; set; }
         public string BatchName { get; set; }
         public List<BatchSection> ListOfBatches { get; set; }
         

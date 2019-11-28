@@ -14,8 +14,8 @@
             <form method="POST">
                 <div class="row">
                     <div class="input-field col s12 l12">
-                        <input id="first_name" type="text" class="validate" value="171-35-1985" readonly>
-                        <label class="active" for="first_name">Student Id</label>
+                        <input asp-for="Registration.StudentVarsityId" type="text" class="validate" value="@ViewBag.studentId" readonly>
+                        <label asp-for="Registration.StudentVarsityId">Student Id</label>
                     </div>
                 </div>
                 <div class="row">

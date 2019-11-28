@@ -91,9 +91,8 @@ namespace App.Migrations
 
             modelBuilder.Entity("App.Models.Batch", b =>
                 {
-                    b.Property<int>("BatchId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("BatchId")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("BatchName")
                         .HasColumnType("TEXT");
@@ -105,11 +104,11 @@ namespace App.Migrations
 
             modelBuilder.Entity("App.Models.BatchSection", b =>
                 {
-                    b.Property<int>("BatchId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("BatchId")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("SectionId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SectionId")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("BatchSectioId")
                         .HasColumnType("INTEGER");
@@ -284,9 +283,8 @@ namespace App.Migrations
 
             modelBuilder.Entity("App.Models.Section", b =>
                 {
-                    b.Property<int>("SectionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SectionId")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("SectionCapacity")
                         .HasColumnType("INTEGER");
@@ -324,7 +322,13 @@ namespace App.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("BatchId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("RegistrationId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SectionId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SemesterId")
@@ -332,7 +336,11 @@ namespace App.Migrations
 
                     b.HasKey("StudentId");
 
+                    b.HasIndex("BatchId");
+
                     b.HasIndex("RegistrationId");
+
+                    b.HasIndex("SectionId");
 
                     b.HasIndex("SemesterId");
 
@@ -561,9 +569,17 @@ namespace App.Migrations
 
             modelBuilder.Entity("App.Models.Student", b =>
                 {
+                    b.HasOne("App.Models.Batch", "Batch")
+                        .WithMany()
+                        .HasForeignKey("BatchId");
+
                     b.HasOne("App.Models.Registration", "Registration")
                         .WithMany()
                         .HasForeignKey("RegistrationId");
+
+                    b.HasOne("App.Models.Section", "Section")
+                        .WithMany()
+                        .HasForeignKey("SectionId");
 
                     b.HasOne("App.Models.Semester", "Semester")
                         .WithMany()

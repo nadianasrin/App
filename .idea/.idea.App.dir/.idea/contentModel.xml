@@ -19,8 +19,8 @@
         <e p="StudentController.cs" t="Include" />
       </e>
       <e p="Migrations" t="Include">
-        <e p="20191125172648_InitialCreate.cs" t="Include" />
-        <e p="20191125172648_InitialCreate.Designer.cs" t="Include" />
+        <e p="20191127204820_InitialCreate.cs" t="Include" />
+        <e p="20191127204820_InitialCreate.Designer.cs" t="Include" />
         <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
