@@ -47,29 +47,8 @@ namespace App.Controllers
         
         public async Task<IActionResult> Index(string sid)
         {
-            var student = await _context.Student.FirstOrDefaultAsync(st => st.Registration.RegistrationId == sid);
+            var student = await _context.Student.FirstOrDefaultAsync(s => s.Registration.RegistrationId == sid);
             
-            var batchList = await _context.Batch.ToListAsync();
-            foreach (var batch in batchList)
-            {
-                student.Batches.Add(new SelectListItem
-                {
-                    Value = batch.BatchId,
-                    Text = batch.BatchName
-                });
-            }
-
-            var sectionList = await _context.Section.ToListAsync();
-            foreach (var section in sectionList)
-            {
-                student.Batches.Add(new SelectListItem
-                {
-                    Value = section.SectionId,
-                    Text = section.SectionName
-                });
-            }
-            
-            ViewBag.studentId = student;
             return View(student);
         }
     }
