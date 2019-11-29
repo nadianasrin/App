@@ -66,7 +66,8 @@
           <e p="Privacy.cshtml" t="Include" />
         </e>
         <e p="Officer" t="Include">
-          <e p="EnrolledStudent.cshtml" t="Include" />
+          <e p="Semester.cshtml" t="Include" />
+          <e p="Students.cshtml" t="Include" />
         </e>
         <e p="Shared" t="Include">
           <e p="_Layout.cshtml" t="Include" />

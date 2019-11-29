@@ -20,10 +20,10 @@ namespace App.Controllers
         }
         
         // GET request from 
-        public IActionResult Index()
-        {
-            return View();
-        }
+//        public IActionResult Index()
+//        {
+//            return View();
+//        }
 
         // get currently logged in user
         public string GetUser()
@@ -44,9 +44,11 @@ namespace App.Controllers
                 return null;
             }
         }
-        public async Task<IActionResult> index(string sid)
+        
+        public async Task<IActionResult> Index(string sid)
         {
-            var student = await _context.Student.LastOrDefaultAsync(st => st.Registration.RegistrationId == sid);
+            var student = await _context.Student.FirstOrDefaultAsync(st => st.Registration.RegistrationId == sid);
+            
             var batchList = await _context.Batch.ToListAsync();
             foreach (var batch in batchList)
             {
@@ -66,7 +68,7 @@ namespace App.Controllers
                     Text = section.SectionName
                 });
             }
-
+            
             ViewBag.studentId = student;
             return View(student);
         }

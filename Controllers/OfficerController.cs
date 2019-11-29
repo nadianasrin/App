@@ -32,13 +32,14 @@ namespace App.Controllers
                 var role = _context.OfficerReg.Find(userId);
                 return role.Role;
             }
-            catch (Exception e)
+            catch (Exception)
+            
             {
                 return null;
             }
         }
 
-        public IActionResult EnrolledStudent()
+        public IActionResult Semester()
         {
             return View();
         }

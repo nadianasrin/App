@@ -140,7 +140,6 @@ E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Account\Signup.cshtml.g.cs
 E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Account\Tsignup.cshtml.g.cs
 E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
 E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Home\Privacy.cshtml.g.cs
-E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Officer\EnrolledStudent.cshtml.g.cs
 E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs
 E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_LayoutMagic.cshtml.g.cs
@@ -156,3 +155,5 @@ E:\App\obj\Debug\netcoreapp3.0\App.Views.pdb
 E:\App\obj\Debug\netcoreapp3.0\App.csproj.CopyComplete
 E:\App\obj\Debug\netcoreapp3.0\App.dll
 E:\App\obj\Debug\netcoreapp3.0\App.pdb
+E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Officer\Semester.cshtml.g.cs
+E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Officer\Students.cshtml.g.cs

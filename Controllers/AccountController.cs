@@ -116,7 +116,7 @@ namespace App.Controllers
                     _context.Add(officer);
                     await _context.SaveChangesAsync();
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("enrolledstudent", "Officer", new {oid = officerreg.OfficerId});
+                    return RedirectToAction("semester", "Officer", new {oid = officerreg.OfficerId});
                 }
 
                 foreach (var error in result.Errors)
@@ -145,7 +145,7 @@ namespace App.Controllers
                         return RedirectToAction("index", "Student", new {sid = getUserId(userName)});
                     }
 
-                    return RedirectToAction("enrolledstudent", "officer", new {oid = getUserId(userName)});
+                    return RedirectToAction("semester", "officer", new {oid = getUserId(userName)});
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid login attempt");
