@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191127204820_InitialCreate")]
+    [Migration("20191129142051_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -327,6 +327,9 @@ namespace App.Migrations
                     b.Property<string>("BatchId")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("CourseId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("RegistrationId")
                         .HasColumnType("TEXT");
 
@@ -339,6 +342,8 @@ namespace App.Migrations
                     b.HasKey("StudentId");
 
                     b.HasIndex("BatchId");
+
+                    b.HasIndex("CourseId");
 
                     b.HasIndex("RegistrationId");
 
@@ -572,15 +577,19 @@ namespace App.Migrations
             modelBuilder.Entity("App.Models.Student", b =>
                 {
                     b.HasOne("App.Models.Batch", "Batch")
-                        .WithMany()
+                        .WithMany("BatchStudentList")
                         .HasForeignKey("BatchId");
+
+                    b.HasOne("App.Models.Course", "Course")
+                        .WithMany("CourseStudentList")
+                        .HasForeignKey("CourseId");
 
                     b.HasOne("App.Models.Registration", "Registration")
                         .WithMany()
                         .HasForeignKey("RegistrationId");
 
                     b.HasOne("App.Models.Section", "Section")
-                        .WithMany()
+                        .WithMany("SectionStudentList")
                         .HasForeignKey("SectionId");
 
                     b.HasOne("App.Models.Semester", "Semester")

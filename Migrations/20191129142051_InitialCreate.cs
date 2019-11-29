@@ -317,46 +317,6 @@ namespace App.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Student",
-                columns: table => new
-                {
-                    StudentId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    RegistrationId = table.Column<string>(nullable: true),
-                    SemesterId = table.Column<string>(nullable: true),
-                    BatchId = table.Column<string>(nullable: true),
-                    SectionId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Student", x => x.StudentId);
-                    table.ForeignKey(
-                        name: "FK_Student_Batch_BatchId",
-                        column: x => x.BatchId,
-                        principalTable: "Batch",
-                        principalColumn: "BatchId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Student_Registration_RegistrationId",
-                        column: x => x.RegistrationId,
-                        principalTable: "Registration",
-                        principalColumn: "RegistrationId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Student_Section_SectionId",
-                        column: x => x.SectionId,
-                        principalTable: "Section",
-                        principalColumn: "SectionId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Student_Semester_SemesterId",
-                        column: x => x.SemesterId,
-                        principalTable: "Semester",
-                        principalColumn: "SemesterId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Offer",
                 columns: table => new
                 {
@@ -379,6 +339,53 @@ namespace App.Migrations
                         column: x => x.OfferedCourseCourseId,
                         principalTable: "Course",
                         principalColumn: "CourseId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Student",
+                columns: table => new
+                {
+                    StudentId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    RegistrationId = table.Column<string>(nullable: true),
+                    CourseId = table.Column<int>(nullable: true),
+                    SemesterId = table.Column<string>(nullable: true),
+                    BatchId = table.Column<string>(nullable: true),
+                    SectionId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Student", x => x.StudentId);
+                    table.ForeignKey(
+                        name: "FK_Student_Batch_BatchId",
+                        column: x => x.BatchId,
+                        principalTable: "Batch",
+                        principalColumn: "BatchId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Student_Course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Course",
+                        principalColumn: "CourseId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Student_Registration_RegistrationId",
+                        column: x => x.RegistrationId,
+                        principalTable: "Registration",
+                        principalColumn: "RegistrationId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Student_Section_SectionId",
+                        column: x => x.SectionId,
+                        principalTable: "Section",
+                        principalColumn: "SectionId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Student_Semester_SemesterId",
+                        column: x => x.SemesterId,
+                        principalTable: "Semester",
+                        principalColumn: "SemesterId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -511,6 +518,11 @@ namespace App.Migrations
                 column: "BatchId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Student_CourseId",
+                table: "Student",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Student_RegistrationId",
                 table: "Student",
                 column: "RegistrationId");
@@ -568,10 +580,10 @@ namespace App.Migrations
                 name: "Officer");
 
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "Batch");
 
             migrationBuilder.DropTable(
-                name: "Batch");
+                name: "Course");
 
             migrationBuilder.DropTable(
                 name: "Registration");

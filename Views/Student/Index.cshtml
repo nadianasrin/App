@@ -5,7 +5,8 @@
     Layout = "_LayoutStudent";
 }
 
-<div class="row"><br>
+<div class="row">
+    <br>
     <div class="center-align">
         <h5 class="orange-text text-darken-3">Enrollment form</h5>
     </div>
@@ -14,40 +15,49 @@
             <form method="POST">
                 <div class="row">
                     <div class="input-field col s12 l12">
-                        @* <input asp-for="Registration.StudentVarsityId" type="text" class="validate" value="@Model.Registration.StudentVarsityId" readonly> *@
-                        @* <label asp-for="Registration.StudentVarsityId">Student Id</label> *@
+                        <input asp-for="Registration.StudentVarsityId" type="text" class="validate" value="@Model.Registration.StudentVarsityId" readonly>
+                        <label class="active" asp-for="Registration.StudentVarsityId">Student Id</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 l12">
-                        <input id="last_name" type="text" value="Summer 2019" readonly>
-                        <label for="last_name">Current Semester Name</label>
+                        <input id="last_name" type="text" value="@Model.Semester.SemesterName" readonly>
+                        <label class="active" for="last_name">Current Semester Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select asp-for="Batch" asp-items="Model.BatchNumber">
+                        <select asp-for="Batch" asp-items="Model.Batches">
                             <option value="" disabled selected>Choose your option</option>
                         </select>
                         <label asp-for="Batch">Choose Batch</label>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select asp-for="Course.SemesterNumber" asp-items="Model.Semesters">
+                            <option value="" disabled selected>Choose your option</option>
+                        </select>
+                        <label asp-for="Course.SemesterNumber">Select desired semester to enroll</label>
+                    </div>
+                </div>
+
                 <!--    Forearch loop for the courses    -->
                 <div class="row">
                     <div class="input-field col s12 l12">
-                        <input id="first_name" type="text" class="validate" value="SWE413"> 
+                        <input id="first_name" type="text" class="validate" value="SWE413">
                         <label class="active" for="first_name">Course Code</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12">
                         <label>
-                            <input type="checkbox" id="retakeCheck" />
+                            <input type="checkbox" id="retakeCheck"/>
                             <span>I have retake or another course</span>
                         </label>
                     </div>
                 </div>
-                <div class="row" >
+                <div class="row">
                     <div class="input-field col s6 l6">
                         <input id="section-number" type="text" class="validate" value="@ViewBag.studentId">
                         <label for="section-number">Retake Course Code</label>

@@ -11,6 +11,7 @@ namespace App.Models
         public string SectionId { get; set; }
         public string SectionName { get; set; }
         public int SectionCapacity { get; set; }
+        public List<Student> SectionStudentList { get; set; }
         public List<BatchSection> ListOfSections { get; set; }
     }
 }

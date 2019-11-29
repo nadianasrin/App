@@ -37,12 +37,12 @@ namespace App.Controllers
             return View();
         }
 
-        private string getUserRole(string username)
+        private string GetUserRole(string username)
         {
             return _userManager.FindByNameAsync(username).Result.Role;
         }
 
-        private string getUserId(string username)
+        private string GetUserId(string username)
         {
             return _userManager.FindByNameAsync(username).Result.Id;
         }
@@ -139,13 +139,13 @@ namespace App.Controllers
 
                 if (result.Succeeded)
                 {
-                    var userRole = getUserRole(userName);
+                    var userRole = GetUserRole(userName);
                     if (userRole == "Student")
                     {
-                        return RedirectToAction("index", "Student", new {sid = getUserId(userName)});
+                        return RedirectToAction("index", "Student", new {sid = GetUserId(userName)});
                     }
 
-                    return RedirectToAction("semester", "officer", new {oid = getUserId(userName)});
+                    return RedirectToAction("semester", "officer", new {oid = GetUserId(userName)});
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid login attempt");

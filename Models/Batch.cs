@@ -11,5 +11,6 @@ namespace App.Models
         public string BatchId { get; set; }
         public string BatchName { get; set; }
         public List<BatchSection> ListOfBatches { get; set; }
+        public List<Student> BatchStudentList { get; set; }
     }
 }

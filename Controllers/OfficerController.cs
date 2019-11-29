@@ -20,12 +20,12 @@ namespace App.Controllers
             _userManager = userManager;
         }
 
-        public string getUserId()
+        public string GetUserId()
         {
             return _userManager.GetUserId(HttpContext.User);
         }
 
-        public string getUserRole(string userId)
+        public string GetUserRole(string userId)
         {
             try
             {
@@ -43,7 +43,6 @@ namespace App.Controllers
         {
             return View();
         }
-
 
         [HttpPost]
         public async Task<JsonResult> CreateSemester(string sName)
