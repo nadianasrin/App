@@ -12,8 +12,8 @@ namespace App.Controllers
 {
     public class StudentController : Controller
     {
-        private UserManager<ApplicationUser> _userManager;
-        private ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ApplicationDbContext _context;
         public StudentController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
@@ -25,6 +25,11 @@ namespace App.Controllers
         {
             return _userManager.GetUserId(HttpContext.User);
         }
+        
+        /*
+         * HttpGet method to get all info of specific student id 
+         */
+         
         public async Task<IActionResult> Index(string sid)
         {
             var student = await _context.Student.SingleOrDefaultAsync(cat => cat.Registration.RegistrationId == sid);
@@ -48,10 +53,15 @@ namespace App.Controllers
                     Text = section.SectionName
                 });
             }
-
-            ViewBag.studentId = sid;
             return View(student);
-            
         }
+        /*
+         * HttpGet method to get the course information of the selected semester from the dropdown list 
+         */
+        public async Task<JsonResult> GetCourseOfSemester(string semester)
+        {
+            var courses = await _context.Course.Where(cat => cat.SemesterNumber == semester).ToListAsync();
+            return Json(courses);
+        } 
     }
 }

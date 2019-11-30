@@ -58,7 +58,6 @@ namespace App.Controllers
                 {
                     return Json("invalidSemester");
                 }
-            
                 var semester = new Semester
                 {
                     SemesterId = Guid.NewGuid().ToString().Replace("-", ""),

@@ -33,6 +33,7 @@ function FetchSemesters() {
     
     var semesters = $("#semesterCards");
     $.get('/Officer/FetchSemesters', function (response) {
+        console.log(response);
         console.log(response.length);
         var messsage = " <div class=\"center-align\">\n" +
             "                <h4 class=\"purple-text text-darken-4\">Semesters</h4>\n" +
@@ -66,6 +67,7 @@ function FetchSemesters() {
                "                    </div>\n" +
                "                </div>\n" +
                "            </div>";
+           
            messsage += semesterCard;
        }
         semesters.html(messsage);
