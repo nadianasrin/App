@@ -57,7 +57,7 @@ function FetchSemesters() {
                "                    <div id=\"modal\" class=\"modal\">\n" +
                "                        <div class=\"modal-content\">\n" +
                "                            <div class=\"center-align\">\n" +
-               "                                    <h5>Delete Spring 2019?</h5>\n" +
+               "                                    <h5></h5>\n" +
                "                            </div>\n" +
                "                        </div>\n" +
                "                        <div class=\"modal-footer\">\n" +

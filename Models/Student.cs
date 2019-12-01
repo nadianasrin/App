@@ -10,7 +10,6 @@ namespace App.Models
         [Key]
         public int StudentId { get; set; }
         public Registration Registration { get; set; }
-        
         public Course Course { get; set; }
         public Semester Semester { get; set; }
         public Batch Batch { get; set; }

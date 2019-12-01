@@ -19,12 +19,7 @@
                         <label class="active" asp-for="Registration.StudentVarsityId">Student Id</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12 l12">
-                        <input id="last_name" type="text" value="@Model.Semester.SemesterName" readonly>
-                        <label class="active" for="last_name">Current Semester Name</label>
-                    </div>
-                </div>
+                
                 <div class="row">
                     <div class="input-field col s12">
                         <select asp-for="Batch" asp-items="Model.Batches">

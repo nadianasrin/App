@@ -32,7 +32,9 @@ namespace App.Controllers
          
         public async Task<IActionResult> Index(string sid)
         {
-            var student = await _context.Student.SingleOrDefaultAsync(cat => cat.Registration.RegistrationId == sid);
+            var student = await _context.Student
+                .Include(stu => stu.Registration)
+                .SingleOrDefaultAsync(cat => cat.Registration.RegistrationId == sid);
             
             var batchList = await _context.Batch.ToListAsync();
             foreach (var batch in batchList)
