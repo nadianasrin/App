@@ -29,14 +29,13 @@ namespace App.Controllers
         /*
          * HttpGet method to get all info of specific student id 
          */
-         
         public async Task<IActionResult> Index(string sid)
         {
             var student = await _context.Student
                 .Include(stu => stu.Registration)
                 .SingleOrDefaultAsync(cat => cat.Registration.RegistrationId == sid);
-            
-            var batchList = await _context.Batch.ToListAsync();
+
+            var batchList = await _context.Batch.OrderByDescending(b => b.BatchName).ToListAsync();
             foreach (var batch in batchList)
             {
                 student.Batches.Add(new SelectListItem
