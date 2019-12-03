@@ -157,3 +157,4 @@ E:\App\obj\Debug\netcoreapp3.0\App.Views.pdb
 E:\App\obj\Debug\netcoreapp3.0\App.csproj.CopyComplete
 E:\App\obj\Debug\netcoreapp3.0\App.dll
 E:\App\obj\Debug\netcoreapp3.0\App.pdb
+E:\App\obj\Debug\netcoreapp3.0\Razor\Views\Officer\RetakeStudents.cshtml.g.cs

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using App.Models;
 using Microsoft.AspNetCore.Identity;
@@ -20,11 +21,17 @@ namespace App.Controllers
             _userManager = userManager;
         }
 
+        /*
+         * Get user id from the user manager
+         */
         public string GetUserId()
         {
             return _userManager.GetUserId(HttpContext.User);
         }
-
+        
+        /*
+         * Get user role from the user id
+         */
         public string GetUserRole(string userId)
         {
             try
@@ -38,10 +45,59 @@ namespace App.Controllers
                 return null;
             }
         }
-
-        public IActionResult Semester()
+        
+        /*
+         * Method to authenticate user.
+         * if the user id is null then user should login / register first
+         * if the logged in user role is not officer then route to student page
+         * if the logged in user id and passing id doesn't match then return check role and route
+         * at last return the user id and route'
+         */
+        public string AuthenticateUser(string oid)
         {
-            return View();
+            var loggedInUser = GetUserId();
+            if (string.IsNullOrEmpty(loggedInUser))
+            {
+                return "login";
+            }
+            if (GetUserRole(oid) != "Officer")
+            {
+                return "student";
+            }
+            if (oid != loggedInUser)
+            {
+                return GetUserRole(loggedInUser) == "Student" ? "Student" : "Self";
+            }
+
+            return Regex.Replace(oid, @"\s+", "") == "" ? "Self" : "Continue";
+        }
+        
+        /*
+         * Method to authenticate user from user id and user role
+         * and view the page
+         */
+        public async Task<IActionResult> Semester(string oid)
+        {
+            var loggedInUser = GetUserId();
+            var auth = AuthenticateUser(oid);
+            switch (auth)
+            {
+                case "login":
+                    return RedirectToAction("Signin", "Account");
+                case "student":
+                    return RedirectToAction("index", "Student", new {sid = loggedInUser});
+                case "Self":
+                    await Semester(loggedInUser);
+                    break;
+                case "Continue":
+                {
+                    return View();
+                }
+                default:
+                    await Semester(loggedInUser);
+                    break;
+            }
+            return RedirectToAction("Logout", "Account");
         }
 
         /*
