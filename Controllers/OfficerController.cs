@@ -44,6 +44,12 @@ namespace App.Controllers
             return View();
         }
 
+        /*
+         * HttpPost method which pass semester as a string and
+         * check if the semester is already exists or not. IF the
+         * semester is not already exists then create a semester
+         * and return success.
+         */
         [HttpPost]
         public async Task<JsonResult> CreateSemester(string sName)
         {
@@ -73,17 +79,21 @@ namespace App.Controllers
             }
         }
 
+        /*
+         * HttpGet method to fetch all the semesters
+         * from the database and show on the page
+         */
         public async Task<JsonResult> FetchSemesters()
+        { 
+            try
             {
-                try
-                {
-                    var semesters = await _context.Semester.ToListAsync();
-                    return Json(semesters);
-                }
-                catch (Exception)
-                {
-                    return Json("Fail");
-                }
+                var semesters = await _context.Semester.ToListAsync();
+                return Json(semesters);
+            }
+            catch (Exception)
+            {
+                return Json("Fail"); 
             }
         }
     }
+}

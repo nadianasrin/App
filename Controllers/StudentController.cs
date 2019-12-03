@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Data;
 using App.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -64,5 +65,15 @@ namespace App.Controllers
             var courses = await _context.Course.Where(cat => cat.SemesterNumber == semester).ToListAsync();
             return Json(courses);
         } 
+        
+        /*
+         * HttpPost method to save student form data
+         */
+       // [HttpPost]
+//        public async Task<JsonResult> SaveStudentInfo(StudentForm studentForm)
+//        {
+//            var ifStudentIsAlreadyEnrolled =
+//                await _context.Enrollment.LastOrDefaultAsync(s => s.EnrollStudents.StudentId == studentForm.StudentId);
+//        }
     }
 }

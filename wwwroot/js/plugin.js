@@ -4,6 +4,7 @@ $(document).ready(function() {
   $('.modal').modal();
   $('.dropdown-trigger').dropdown();
   $('.tabs').tabs();
+  M.updateTextFields();
   
 
     "use strict";

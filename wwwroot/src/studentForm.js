@@ -17,6 +17,7 @@
                         $('#'+inputField).val(response[i]["courseCode"]);
                     }
                     courses.show();
+                    
                 }
             });
         })
@@ -51,8 +52,9 @@
             "course04": course04,
             "course05": course05,
             "section": section
-            
         }
+        
+        
         
     })
     

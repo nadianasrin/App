@@ -8,18 +8,15 @@
 <div class="row">
     <div class="col s12 l6 offset-l3 offset-m3">
         <div class="input-field col s12">
-            <select>
-                <option value="" disabled selected>Choose option</option>
-                <option value="1">Batch 20</option>
-                <option value="2">Batch 21</option>
-                <option value="3">Batch 22</option>
-                <option value="3">Batch 23</option>
-                <option value="3">Batch 24</option>
-                <option value="3">Batch 25</option>
-                <option value="3">Batch 26</option>
-                <option value="3">Batch 27</option>
+            <select asp-for="Batch" asp-items="Model.Batches">
+                 <option value="" disabled selected>Choose your option</option>
             </select>
-            <label>Select batch to see student details</label>
+            <label asp-for="Batch">Choose Batch</label>
         </div>
     </div>
 </div>
+<script>
+$( document ).ready(function() {
+       $("#officerSemester").addClass('active');
+    });
+</script>
