@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using App.Data;
 using App.Models;
@@ -28,34 +29,99 @@ namespace App.Controllers
         }
         
         /*
+        * Get user role from the user id
+        */
+        public string GetUserRole(string userId)
+        {
+            try
+            {
+                var role = _context.OfficerReg.Find(userId);
+                return role.Role;
+            }
+            catch (Exception)
+            
+            {
+                return null;
+            }
+        }
+        
+        /*
+        * Method to authenticate user.
+        * if the user id is null then user should login / register first
+        * if the logged in user role is not officer then route to student page
+        * if the logged in user id and passing id doesn't match then return check role and route
+        * at last return the user id and route'
+        */
+        
+        public string AuthenticateUser(string sid)
+        {
+            var loggedInUser = GetUserId();
+            if (string.IsNullOrEmpty(loggedInUser))
+            {
+                return "login";
+            }
+            if (GetUserRole(sid) != "Student")
+            {
+                return "officer";
+            }
+            if (sid != loggedInUser)
+            {
+                return GetUserRole(loggedInUser) == "Officer" ? "Officer" : "Self";
+            }
+
+            return Regex.Replace(sid, @"\s+", "") == "" ? "Self" : "Continue";
+        }
+        
+        
+        /*
          * HttpGet method to get all info of specific student id 
          */
         public async Task<IActionResult> Index(string sid)
         {
-            var student = await _context.Student
-                .Include(stu => stu.Registration)
-                .SingleOrDefaultAsync(cat => cat.Registration.RegistrationId == sid);
-
-            var batchList = await _context.Batch.OrderByDescending(b => b.BatchName).ToListAsync();
-            foreach (var batch in batchList)
+            var loggedInUser = GetUserId();
+            var auth = AuthenticateUser(sid);
+            switch (auth)
             {
-                student.Batches.Add(new SelectListItem
+                case "login":
+                    return RedirectToAction("Signin", "Account");
+                case "officer":
+                    return RedirectToAction("index", "Student", new {sid = loggedInUser});
+                case "Self":
+                    await Index(loggedInUser);
+                    break;
+                case "Continue":
                 {
-                    Value = batch.BatchId,
-                    Text = batch.BatchName
-                });
-            }
+                    var student = await _context.Student
+                        .Include(stu => stu.Registration)
+                        .SingleOrDefaultAsync(cat => cat.Registration.RegistrationId == sid);
 
-            var sectionList = await _context.Section.ToListAsync();
-            foreach (var section in sectionList)
-            {
-                student.Sections.Add(new SelectListItem
-                {
-                    Value = section.SectionId,
-                    Text = section.SectionName
-                });
+                    var batchList = await _context.Batch.OrderByDescending(b => b.BatchName).ToListAsync();
+                    foreach (var batch in batchList)
+                    {
+                        student.Batches.Add(new SelectListItem
+                        {
+                            Value = batch.BatchId,
+                            Text = batch.BatchName
+                        });
+                    }
+
+                    var sectionList = await _context.Section.ToListAsync();
+                    foreach (var section in sectionList)
+                    {
+                        student.Sections.Add(new SelectListItem
+                        {
+                            Value = section.SectionId,
+                            Text = section.SectionName
+                        });
+                    }
+
+                    return View(student);
+                }
+                default:
+                    await Index(loggedInUser);
+                    break;
             }
-            return View(student);
+            return RedirectToAction("Logout", "Account");
         }
         /*
          * HttpGet method to get the course information of the selected semester from the dropdown list 
