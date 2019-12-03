@@ -46,10 +46,13 @@
             "batch": batch,
             "semesterNumber": semesterNumber,
             "course01": course01,
+            "course02": course02,
+            "course03": course03,
+            "course04": course04,
+            "course05": course05,
+            "section": section
             
         }
-        
-        
         
     })
     
