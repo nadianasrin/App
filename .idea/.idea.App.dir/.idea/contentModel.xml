@@ -18,6 +18,9 @@
         <e p="OfficerController.cs" t="Include" />
         <e p="StudentController.cs" t="Include" />
       </e>
+      <e p="Data" t="Include">
+        <e p="StudentForm.cs" t="Include" />
+      </e>
       <e p="Migrations" t="Include">
         <e p="20191129142051_InitialCreate.cs" t="Include" />
         <e p="20191129142051_InitialCreate.Designer.cs" t="Include" />

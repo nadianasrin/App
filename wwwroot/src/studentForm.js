@@ -1,21 +1,56 @@
 ﻿$(document).ready(function () {
+    var courses = $('#viewCourseCodeField');
+    courses.hide();
     $("#cc").change(function () {
-        var courses = $("#viewCourseCodeField");
         var semesterName = $("#cc option:selected").text();
         $.getJSON('/Student/GetCourseOfSemester', {semester: semesterName}, function (response) {
             console.log(response);
             var courseField = "";
-            $.each(response, function (i, value) {
+            $.each(response, function (key, value) {
                 if (value == null) {
                     $("#viewCourseCodeField").empty();
-                } else {
-                    courseField += "<div class=\"input-field col s12 l12\">\n" +
-                        "                        <input id=\"" + response[i].courseId + "\" type=\"text\" value=\"" + response[i].courseCode+"  ("+response[i].courseTitle+")" + "\">\n" +
-                        "                        <label class=\"active\" for=\"course\">Course Code</label>\n" +
-                        "                    </div>";
+                } 
+                else {
+                    for(var i = 0; i < response.length; i++)
+                    {
+                        var inputField = "c0".concat((i+1).toString());
+                        $('#'+inputField).val(response[i]["courseCode"]);
+                    }
+                    courses.show();
                 }
             });
-            courses.html(courseField);
         })
     });
+    
+    // form submission 
+    $('#studentForm').submit(function (e) {
+        e.preventDefault();
+        var studentId = $("#Registration_StudentVarsityId").val();
+        var batch = $("#Batch option:selected").text();
+        var semesterNumber = $("#cc option:selected").text();
+        var course01 = $("#c01").val();
+        var course02 = $("#c02").val();
+        var course03 = $("#c03").val();
+        var course04 = $("#c04").val();
+        var course05 = $("#c05").val();
+        var section = $("#section option:selected").text();
+        
+        console.log(studentId);
+        console.log(batch);
+        console.log(semesterNumber);
+        console.log(course01);
+        console.log(Section);
+
+        var studentForm = {
+            "studentId": studentId,
+            "batch": batch,
+            "semesterNumber": semesterNumber,
+            "course01": course01,
+            
+        }
+        
+        
+        
+    })
+    
 });
