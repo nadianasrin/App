@@ -69,6 +69,7 @@
           <e p="Privacy.cshtml" t="Include" />
         </e>
         <e p="Officer" t="Include">
+          <e p="RetakeStudents.cshtml" t="Include" />
           <e p="Semester.cshtml" t="Include" />
           <e p="Students.cshtml" t="Include" />
         </e>
