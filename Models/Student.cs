@@ -35,8 +35,7 @@ namespace App.Models
             new SelectListItem{Value = "s11", Text = "Semester 11"},
             new SelectListItem{Value = "s12", Text = "Semester 12"}
         };
-        
-        
+
         [NotMapped]
         public List<Enrollment> ListOfEnrollmentStudent { get; set; }
 

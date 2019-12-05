@@ -1,15 +1,13 @@
 ﻿$(document).ready(function () {
     var courses = $('#viewCourseCodeField');
     courses.hide();
-    $("#cc").change(function () {
-        var semesterName = $("#cc option:selected").text();
+    $("#SemesterList").change(function () {
+        var semesterName = $("#SemesterList option:selected").text();
         $.getJSON('/Student/GetCourseOfSemester', {semester: semesterName}, function (response) {
-            console.log(response);
-            var courseField = "";
             $.each(response, function (key, value) {
                 if (value == null) {
-                    $("#viewCourseCodeField").empty();
-                } 
+                    courses.empty();
+                }
                 else {
                     for(var i = 0; i < response.length; i++)
                     {
@@ -17,7 +15,6 @@
                         $('#'+inputField).val(response[i]["courseCode"]);
                     }
                     courses.show();
-                    
                 }
             });
         })
@@ -36,11 +33,11 @@
         var course05 = $("#c05").val();
         var section = $("#section option:selected").text();
         
-        console.log(studentId);
-        console.log(batch);
-        console.log(semesterNumber);
-        console.log(course01);
-        console.log(Section);
+        // console.log(studentId);
+        // console.log(batch);
+        // console.log(semesterNumber);
+        // console.log(course01);
+        // console.log(section);
 
         var studentForm = {
             "studentId": studentId,
@@ -52,10 +49,24 @@
             "course04": course04,
             "course05": course05,
             "section": section
-        }
-        
-        
-        
+        };
+
+        $.post('/Student/SaveStudentInfo',{studentForm: studentForm}, function (response) {
+            if(response === "enrolled")
+            {
+                showToast("You already have enrolled", "amber darken-2");
+            }
+            else if(response === "success")
+            {
+                showToast("Successfully enrolled", "green darken-1");
+            }
+        })
     })
-    
 });
+
+function showToast(message, style) {
+    M.toast({
+        html : message,
+        classes : style
+    });
+}

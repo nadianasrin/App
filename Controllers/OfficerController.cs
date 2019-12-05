@@ -62,13 +62,12 @@ namespace App.Controllers
             }
             if (GetUserRole(oid) != "Officer")
             {
-                return "student";
+                return "login";
             }
             if (oid != loggedInUser)
             {
                 return GetUserRole(loggedInUser) == "Student" ? "Student" : "Self";
             }
-
             return Regex.Replace(oid, @"\s+", "") == "" ? "Self" : "Continue";
         }
         
@@ -84,8 +83,6 @@ namespace App.Controllers
             {
                 case "login":
                     return RedirectToAction("Signin", "Account");
-                case "student":
-                    return RedirectToAction("Index", "Student", new {sid = loggedInUser});
                 case "Self":
                     await Semester(loggedInUser);
                     break;

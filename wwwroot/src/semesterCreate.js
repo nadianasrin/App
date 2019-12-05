@@ -35,6 +35,7 @@ function FetchSemesters() {
     $.get('/Officer/FetchSemesters', function (response) {
         console.log(response);
         console.log(response.length);
+        
         var messsage = " <div class=\"center-align\">\n" +
             "                <h4 class=\"purple-text text-darken-4\">Semesters</h4>\n" +
             "            </div>";

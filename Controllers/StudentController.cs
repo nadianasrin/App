@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -44,34 +45,27 @@ namespace App.Controllers
                 return null;
             }
         }
-        
+
         /*
-        * Method to authenticate user.
-        * if the user id is null then user should login / register first
-        * if the logged in user role is not officer then route to student page
-        * if the logged in user id and passing id doesn't match then return check role and route
-        * at last return the user id and route'
-        */
-        
-        public string AuthenticateUser(string sid)
+         * Method to authenticate user.
+         * if the user id is null then user should login / register first
+         * if the logged in user role is not officer then route to student page
+         * if the logged in user id and passing id doesn't match then return check role and route
+         * at last return the user id and route'
+         */
+        public string AuthenticateUser(string oid)
         {
             var loggedInUser = GetUserId();
             if (string.IsNullOrEmpty(loggedInUser))
             {
                 return "login";
             }
-            if (GetUserRole(sid) != "Student")
+            if (oid != loggedInUser)
             {
-                return "officer";
+                return "login";
             }
-            if (sid != loggedInUser)
-            {
-                return GetUserRole(loggedInUser) == "Officer" ? "Officer" : "Self";
-            }
-
-            return Regex.Replace(sid, @"\s+", "") == "" ? "Self" : "Continue";
+            return Regex.Replace(oid, @"\s+", "") == "" ? "Self" : "Continue";
         }
-        
         
         /*
          * HttpGet method to get all info of specific student id 
@@ -84,8 +78,6 @@ namespace App.Controllers
             {
                 case "login":
                     return RedirectToAction("Signin", "Account");
-                case "officer":
-                    return RedirectToAction("index", "Student", new {sid = loggedInUser});
                 case "Self":
                     await Index(loggedInUser);
                     break;
@@ -114,13 +106,10 @@ namespace App.Controllers
                             Text = section.SectionName
                         });
                     }
-
                     return View(student);
                 }
-                default:
-                    await Index(loggedInUser);
-                    break;
             }
+
             return RedirectToAction("Logout", "Account");
         }
         /*
@@ -135,11 +124,25 @@ namespace App.Controllers
         /*
          * HttpPost method to save student form data
          */
-       // [HttpPost]
-//        public async Task<JsonResult> SaveStudentInfo(StudentForm studentForm)
-//        {
-//            var ifStudentIsAlreadyEnrolled =
-//                await _context.Enrollment.LastOrDefaultAsync(s => s.EnrollStudents.StudentId == studentForm.StudentId);
-//        }
+        [HttpPost]
+        public async Task<JsonResult> SaveStudentInfo(StudentForm studentForm)
+        {
+            var studentIsAlreadyEnrolled =
+                await _context.Enrollment
+                .LastOrDefaultAsync(s => s.EnrollStudents.Registration.StudentVarsityId == studentForm.StudentId);
+
+            var batch = new Batch
+            {
+                BatchName = studentForm.Batch
+            };
+
+            var enrollment = new Student
+            {
+                
+            };
+            
+            
+            return Json(studentIsAlreadyEnrolled != null ? "enrolled" : "success");
+        }
     }
 }
