@@ -1,0 +1,22 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "Students";
+    Layout = "_LayoutTeacher";
+}
+
+<div class="row">
+    <div class="col s12 l6 offset-l3 offset-m3">
+        <div class="input-field col s12">
+            <select asp-for="Batch" asp-items="Model.Batches">
+                 <option value="" disabled selected>Choose your option</option>
+            </select>
+            <label asp-for="Batch">Choose Batch</label>
+        </div>
+    </div>
+</div>
+<script>
+$( document ).ready(function() {
+       $("#officerSemester").addClass('active');
+    });
+</script>

@@ -7,8 +7,8 @@ namespace App.Models
         [Key]
         public int BatchSectioId { get; set; }
 
-        public int BatchId { get; set; }
-        public int SectionId { get; set; }
+        public string BatchId { get; set; }
+        public string SectionId { get; set; }
 
         public Batch Batches { get; set; }
         public Section Sections { get; set; }

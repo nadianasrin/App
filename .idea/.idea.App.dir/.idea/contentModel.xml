@@ -18,9 +18,12 @@
         <e p="OfficerController.cs" t="Include" />
         <e p="StudentController.cs" t="Include" />
       </e>
+      <e p="Data" t="Include">
+        <e p="StudentForm.cs" t="Include" />
+      </e>
       <e p="Migrations" t="Include">
-        <e p="20191125172648_InitialCreate.cs" t="Include" />
-        <e p="20191125172648_InitialCreate.Designer.cs" t="Include" />
+        <e p="20191204192209_InitialCreate.cs" t="Include" />
+        <e p="20191204192209_InitialCreate.Designer.cs" t="Include" />
         <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
@@ -66,7 +69,9 @@
           <e p="Privacy.cshtml" t="Include" />
         </e>
         <e p="Officer" t="Include">
-          <e p="EnrolledStudent.cshtml" t="Include" />
+          <e p="RetakeStudents.cshtml" t="Include" />
+          <e p="Semester.cshtml" t="Include" />
+          <e p="Students.cshtml" t="Include" />
         </e>
         <e p="Shared" t="Include">
           <e p="_Layout.cshtml" t="Include" />
@@ -159,6 +164,7 @@
         </e>
         <e p="src" t="Include">
           <e p="semesterCreate.js" t="Include" />
+          <e p="studentForm.js" t="Include" />
         </e>
       </e>
     </e>
