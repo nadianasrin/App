@@ -19,7 +19,12 @@
                         <label class="active" asp-for="Registration.StudentVarsityId">Student Id</label>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="input-field col s12 l12">
+                        <input id="Semester_Name" type="text" value="@ViewBag.semesterName" readonly>
+                        <label class="active" >Semester Name</label>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <select asp-for="Batch" asp-items="Model.Batches">
@@ -40,39 +45,39 @@
                 <div id="viewCourseCodeField">
                     <div class="row">
                         <div class="input-field col s12 l12">
-                            <input placeholder="" id="c01" type="text" value="" >
+                            <input placeholder="" id="c01" type="text" value="">
                             <label class="active">Course Code </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12 l12">
-                            <input placeholder="" type="text" id="c02" value="" >
-                            <label class="active" >Course Code</label>
+                            <input placeholder="" type="text" id="c02" value="">
+                            <label class="active">Course Code</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12 l12">
-                            <input placeholder="" type="text" id="c03" value="" >
-                            <label class="active" >Course Code</label>
+                            <input placeholder="" type="text" id="c03" value="">
+                            <label class="active">Course Code</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12 l12">
-                            <input placeholder="" type="text"  id="c04" value="" >
-                            <label class="active" >Course Code</label>
+                            <input placeholder="" type="text" id="c04" value="">
+                            <label class="active">Course Code</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12 l12">
-                            <input placeholder="" type="text" id="c05" value="" >
-                            <label class="active" >Course Code</label>
+                            <input placeholder="" type="text" id="c05" value="">
+                            <label class="active">Course Code</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <select asp-for="Section" asp-items="Model.Sections">
+                        <select asp-for="Section.SectionName" asp-items="Model.Sections">
                             <option value="" disabled selected>Choose your option</option>
                         </select>
                         <label>Select Section</label>

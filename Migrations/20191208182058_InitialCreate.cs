@@ -396,7 +396,9 @@ namespace App.Migrations
                     EnrollStudentId = table.Column<int>(nullable: false),
                     EnrollCourseId = table.Column<int>(nullable: false),
                     EnrollmentId = table.Column<int>(nullable: false),
-                    SemesterId = table.Column<string>(nullable: true),
+                    EnrolledSemesterSemesterId = table.Column<string>(nullable: true),
+                    EnrolledBatchBatchId = table.Column<string>(nullable: true),
+                    EnrolledSectionSectionId = table.Column<string>(nullable: true),
                     IsRetakeCourse = table.Column<bool>(nullable: false),
                     OfficerSerialId = table.Column<int>(nullable: true)
                 },
@@ -417,16 +419,28 @@ namespace App.Migrations
                         principalColumn: "StudentId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Enrollment_Batch_EnrolledBatchBatchId",
+                        column: x => x.EnrolledBatchBatchId,
+                        principalTable: "Batch",
+                        principalColumn: "BatchId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Enrollment_Section_EnrolledSectionSectionId",
+                        column: x => x.EnrolledSectionSectionId,
+                        principalTable: "Section",
+                        principalColumn: "SectionId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Enrollment_Semester_EnrolledSemesterSemesterId",
+                        column: x => x.EnrolledSemesterSemesterId,
+                        principalTable: "Semester",
+                        principalColumn: "SemesterId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Enrollment_Officer_OfficerSerialId",
                         column: x => x.OfficerSerialId,
                         principalTable: "Officer",
                         principalColumn: "SerialId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Enrollment_Semester_SemesterId",
-                        column: x => x.SemesterId,
-                        principalTable: "Semester",
-                        principalColumn: "SemesterId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -483,14 +497,24 @@ namespace App.Migrations
                 column: "EnrollCourseId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Enrollment_EnrolledBatchBatchId",
+                table: "Enrollment",
+                column: "EnrolledBatchBatchId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Enrollment_EnrolledSectionSectionId",
+                table: "Enrollment",
+                column: "EnrolledSectionSectionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Enrollment_EnrolledSemesterSemesterId",
+                table: "Enrollment",
+                column: "EnrolledSemesterSemesterId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Enrollment_OfficerSerialId",
                 table: "Enrollment",
                 column: "OfficerSerialId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Enrollment_SemesterId",
-                table: "Enrollment",
-                column: "SemesterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Offer_DesiredCourseCourseId",

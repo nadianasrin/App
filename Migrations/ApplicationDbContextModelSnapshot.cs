@@ -158,6 +158,15 @@ namespace App.Migrations
                     b.Property<int>("EnrollCourseId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("EnrolledBatchBatchId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EnrolledSectionSectionId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EnrolledSemesterSemesterId")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("EnrollmentId")
                         .HasColumnType("INTEGER");
 
@@ -167,18 +176,19 @@ namespace App.Migrations
                     b.Property<int?>("OfficerSerialId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("SemesterId")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("EnrollStudentId", "EnrollCourseId");
 
                     b.HasAlternateKey("EnrollmentId");
 
                     b.HasIndex("EnrollCourseId");
 
-                    b.HasIndex("OfficerSerialId");
+                    b.HasIndex("EnrolledBatchBatchId");
 
-                    b.HasIndex("SemesterId");
+                    b.HasIndex("EnrolledSectionSectionId");
+
+                    b.HasIndex("EnrolledSemesterSemesterId");
+
+                    b.HasIndex("OfficerSerialId");
 
                     b.ToTable("Enrollment");
                 });
@@ -541,13 +551,21 @@ namespace App.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("App.Models.Batch", "EnrolledBatch")
+                        .WithMany()
+                        .HasForeignKey("EnrolledBatchBatchId");
+
+                    b.HasOne("App.Models.Section", "EnrolledSection")
+                        .WithMany()
+                        .HasForeignKey("EnrolledSectionSectionId");
+
+                    b.HasOne("App.Models.Semester", "EnrolledSemester")
+                        .WithMany("ListOfEnrollmentSemester")
+                        .HasForeignKey("EnrolledSemesterSemesterId");
+
                     b.HasOne("App.Models.Officer", null)
                         .WithMany("ListOfEnrollmentStudent")
                         .HasForeignKey("OfficerSerialId");
-
-                    b.HasOne("App.Models.Semester", "Semester")
-                        .WithMany("ListOfEnrollmentSemester")
-                        .HasForeignKey("SemesterId");
                 });
 
             modelBuilder.Entity("App.Models.Offer", b =>

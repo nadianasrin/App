@@ -5,6 +5,7 @@
         public string StudentId { get; set; }
         public string Batch { get; set; }
         public string SemesterNumber { get; set; }
+        public string SemesterName { get; set; }
         public string Course01 { get; set; }
         public string Course02 { get; set; }
         public string Course03 { get; set; }

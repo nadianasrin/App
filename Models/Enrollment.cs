@@ -13,7 +13,9 @@ namespace App.Models
         public Student EnrollStudents { get; set; }
         public int EnrollCourseId { get; set; }
         public Course EnrollCourses { get; set; }
-        public Semester Semester { get; set; }
+        public Semester EnrolledSemester { get; set; }
+        public Batch EnrolledBatch { get; set; }
+        public Section EnrolledSection { get; set; }
         public bool IsRetakeCourse { get; set; }
     }
 }

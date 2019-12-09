@@ -8632,11 +8632,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\App\\App.csproj",
+      "projectUniqueName": "F:\\App\\App.csproj",
       "projectName": "App",
-      "projectPath": "E:\\App\\App.csproj",
+      "projectPath": "F:\\App\\App.csproj",
       "packagesPath": "C:\\Users\\Zubu\\.nuget\\packages\\",
-      "outputPath": "E:\\App\\obj\\",
+      "outputPath": "F:\\App\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8700,7 +8700,16 @@
           "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -122,6 +122,11 @@ namespace App.Controllers
                     SemesterId = Guid.NewGuid().ToString().Replace("-", ""),
                     SemesterName = sName
                 };
+                var getAllSemesterName = await _context.Batch.ToListAsync();
+                var getLastSemester = getAllSemesterName.Last().BatchName;
+                
+                 
+               
                 _context.Add(semester);
                 await _context.SaveChangesAsync();
                 return Json("success");
