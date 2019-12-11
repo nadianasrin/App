@@ -2,6 +2,11 @@
     var courses = $('#viewCourseCodeField');
     courses.hide();
     $("#SemesterList").change(function () {
+        $("#c01").val('');
+        $("#c02").val('');
+        $("#c03").val('');
+        $("#c04").val('');
+        $("#c05").val('');
         var semesterName = $("#SemesterList option:selected").text();
         $.getJSON('/Student/GetCourseOfSemester', {semester: semesterName}, function (response) {
             $.each(response, function (key, value) {
@@ -24,6 +29,7 @@
     $('#studentForm').submit(function (e) {
         e.preventDefault();
         var studentId = $("#Registration_StudentVarsityId").val();
+        var semesterName = $("#Semester_Name").val();
         var batch = $("#Batch option:selected").text();
         var semesterNumber = $("#cc option:selected").text();
         var course01 = $("#c01").val();
@@ -31,14 +37,7 @@
         var course03 = $("#c03").val();
         var course04 = $("#c04").val();
         var course05 = $("#c05").val();
-        var section = $("#section option:selected").text();
-        
-        // console.log(studentId);
-        // console.log(batch);
-        // console.log(semesterNumber);
-        // console.log(course01);
-        // console.log(section);
-
+        var section = $("#Section option:selected").text();
         var studentForm = {
             "studentId": studentId,
             "batch": batch,
@@ -52,6 +51,7 @@
         };
 
         $.post('/Student/SaveStudentInfo',{studentForm: studentForm}, function (response) {
+            console.log(response);
             if(response === "enrolled")
             {
                 showToast("You already have enrolled", "amber darken-2");
@@ -59,6 +59,10 @@
             else if(response === "success")
             {
                 showToast("Successfully enrolled", "green darken-1");
+            }
+            else if(response === "failed")
+            {
+                showToast("Something went wrong!", "red darken-1");
             }
         })
     })

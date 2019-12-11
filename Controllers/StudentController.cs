@@ -17,6 +17,7 @@ namespace App.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
+
         public StudentController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
@@ -28,7 +29,7 @@ namespace App.Controllers
         {
             return _userManager.GetUserId(HttpContext.User);
         }
-        
+
         /*
         * Get user role from the user id
         */
@@ -40,7 +41,7 @@ namespace App.Controllers
                 return role.Role;
             }
             catch (Exception)
-            
+
             {
                 return null;
             }
@@ -60,13 +61,15 @@ namespace App.Controllers
             {
                 return "login";
             }
+
             if (oid != loggedInUser)
             {
                 return "login";
             }
+
             return Regex.Replace(oid, @"\s+", "") == "" ? "Self" : "Continue";
         }
-        
+
         /*
          * HttpGet method to get all info of specific student id 
          */
@@ -87,6 +90,9 @@ namespace App.Controllers
                         .Include(stu => stu.Registration)
                         .SingleOrDefaultAsync(cat => cat.Registration.RegistrationId == sid);
 
+                    var sName = await _context.Semester.ToListAsync();
+                    ViewBag.semesterName = sName.Last().SemesterName;
+
                     var batchList = await _context.Batch.OrderByDescending(b => b.BatchName).ToListAsync();
                     foreach (var batch in batchList)
                     {
@@ -106,12 +112,14 @@ namespace App.Controllers
                             Text = section.SectionName
                         });
                     }
+
                     return View(student);
                 }
             }
 
             return RedirectToAction("Logout", "Account");
         }
+
         /*
          * HttpGet method to get the course information of the selected semester from the dropdown list 
          */
@@ -119,30 +127,87 @@ namespace App.Controllers
         {
             var courses = await _context.Course.Where(cat => cat.SemesterNumber == semester).ToListAsync();
             return Json(courses);
-        } 
-        
+        }
+
         /*
          * HttpPost method to save student form data
          */
         [HttpPost]
         public async Task<JsonResult> SaveStudentInfo(StudentForm studentForm)
         {
-            var studentIsAlreadyEnrolled =
-                await _context.Enrollment
-                .LastOrDefaultAsync(s => s.EnrollStudents.Registration.StudentVarsityId == studentForm.StudentId);
+            //enrollment check for that seection
+            // Count
+            // > 35
+            // section = new Section
+            // get ascil of last semester
+            // ascii ++
+            // again convert to letter
+            // push in section table
 
-            var batch = new Batch
+            try
             {
-                BatchName = studentForm.Batch
-            };
+                var student =
+                    _context.Student.SingleOrDefault(ss => ss.Registration.StudentVarsityId == studentForm.StudentId);
+                var selectedSemester =
+                    _context.Semester.SingleOrDefault(ss => ss.SemesterName == studentForm.SemesterName);
+                var batch = _context.Batch.SingleOrDefault(b => b.BatchName == studentForm.Batch);
+                var section = _context.Section.SingleOrDefault(s => s.SectionName == studentForm.Section);
+                var courses = new List<Course>();
+                if (!string.IsNullOrEmpty(studentForm.Course01))
+                {
+                    var course1 = _context.Course.SingleOrDefaultAsync(c => c.CourseCode == studentForm.Course01);
+                    courses.Add(await course1);
+                }
 
-            var enrollment = new Student
+                if (!string.IsNullOrEmpty(studentForm.Course02))
+                {
+                    var course2 = _context.Course.SingleOrDefaultAsync(c => c.CourseCode == studentForm.Course02);
+                    courses.Add(await course2);
+                }
+
+                if (!string.IsNullOrEmpty(studentForm.Course03))
+                {
+                    var course3 = _context.Course.SingleOrDefaultAsync(c => c.CourseCode == studentForm.Course03);
+                    courses.Add(await course3);
+                }
+
+                if (!string.IsNullOrEmpty(studentForm.Course04))
+                {
+                    var course4 = _context.Course.SingleOrDefaultAsync(c => c.CourseCode == studentForm.Course04);
+                    courses.Add(await course4);
+                }
+
+                if (!string.IsNullOrEmpty(studentForm.Course05))
+                {
+                    var course5 = _context.Course.SingleOrDefaultAsync(c => c.CourseCode == studentForm.Course05);
+                    courses.Add(await course5);
+                }
+
+                foreach (var eachCourse in courses)
+                {
+                    if (student != null)
+                    {
+                        var enrollment = new Enrollment
+                        {
+                            EnrollCourses = eachCourse,
+                            EnrolledBatch = batch,
+                            EnrolledSection = section,
+                            EnrolledSemester = selectedSemester,
+                            EnrollStudents = student,
+                            EnrollCourseId = eachCourse.CourseId,
+                            EnrollStudentId = student.StudentId,
+                            IsRetakeCourse = false
+                        };
+                        _context.Add(enrollment);
+                    }
+                }
+                await _context.SaveChangesAsync();
+                return Json("success");
+            }
+            catch (Exception e)
             {
-                
-            };
-            
-            
-            return Json(studentIsAlreadyEnrolled != null ? "enrolled" : "success");
+                return Json(e.Message);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace App.Models
 {
@@ -9,7 +10,6 @@ namespace App.Models
 
         public string BatchId { get; set; }
         public string SectionId { get; set; }
-
         public Batch Batches { get; set; }
         public Section Sections { get; set; }
     }
