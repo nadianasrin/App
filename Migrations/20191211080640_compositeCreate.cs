@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace App.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class compositeCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -395,7 +395,6 @@ namespace App.Migrations
                 {
                     EnrollStudentId = table.Column<int>(nullable: false),
                     EnrollCourseId = table.Column<int>(nullable: false),
-                    EnrollmentId = table.Column<int>(nullable: false),
                     EnrolledSemesterSemesterId = table.Column<string>(nullable: true),
                     EnrolledBatchBatchId = table.Column<string>(nullable: true),
                     EnrolledSectionSectionId = table.Column<string>(nullable: true),
@@ -405,7 +404,6 @@ namespace App.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Enrollment", x => new { x.EnrollStudentId, x.EnrollCourseId });
-                    table.UniqueConstraint("AK_Enrollment_EnrollmentId", x => x.EnrollmentId);
                     table.ForeignKey(
                         name: "FK_Enrollment_Course_EnrollCourseId",
                         column: x => x.EnrollCourseId,

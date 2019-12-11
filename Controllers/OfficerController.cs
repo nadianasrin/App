@@ -21,6 +21,13 @@ namespace App.Controllers
             _userManager = userManager;
         }
 
+        [HttpGet("Officer/{semesterId}")]
+        public IActionResult Index(string semesterId)
+        {
+            var enrollments = _context.Enrollment.Where(enr => enr.EnrolledSemester.SemesterId == semesterId).ToList();
+            return View(enrollments);
+        }
+
         /*
          * Get user id from the user manager
          */
@@ -122,12 +129,19 @@ namespace App.Controllers
                     SemesterId = Guid.NewGuid().ToString().Replace("-", ""),
                     SemesterName = sName
                 };
-                var getAllSemesterName = await _context.Batch.ToListAsync();
-                var getLastSemester = getAllSemesterName.Last().BatchName;
-                
-                 
-               
+                var getSemesterList =  _context.Batch.ToList();
+                string getLastSemesterName = getSemesterList.Last().BatchName;
+                var batchNumber = Convert.ToInt32(getLastSemesterName.Remove(0, 6));
+                batchNumber += 1;
+
+                var batch = new Batch
+                {
+                    BatchId = Guid.NewGuid().ToString().Replace("-", ""),
+                    BatchName = "Batch " + batchNumber
+                };
+
                 _context.Add(semester);
+                _context.Add(batch);
                 await _context.SaveChangesAsync();
                 return Json("success");
             }
@@ -146,6 +160,7 @@ namespace App.Controllers
             try
             {
                 var semesters = await _context.Semester.ToListAsync();
+                
                 return Json(semesters);
             }
             catch (Exception)
@@ -153,5 +168,10 @@ namespace App.Controllers
                 return Json("Fail"); 
             }
         }
+
+//        public async Task<JsonResult> GetBatches()
+//        {
+//            
+//        }
     }
 }

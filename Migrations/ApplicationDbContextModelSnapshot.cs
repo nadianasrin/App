@@ -167,9 +167,6 @@ namespace App.Migrations
                     b.Property<string>("EnrolledSemesterSemesterId")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("EnrollmentId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<bool>("IsRetakeCourse")
                         .HasColumnType("INTEGER");
 
@@ -177,8 +174,6 @@ namespace App.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("EnrollStudentId", "EnrollCourseId");
-
-                    b.HasAlternateKey("EnrollmentId");
 
                     b.HasIndex("EnrollCourseId");
 

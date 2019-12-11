@@ -26,6 +26,8 @@
             {}
         })
     });
+    
+    $(".semesterCard")
 });
 
 
@@ -47,7 +49,7 @@ function FetchSemesters() {
                "                        <a href=\"batch22.html\"><img class=\"cimage\" src=\"https://cadetkid.github.io/UI/assets/img/spring.png\"></a>\n" +
                "                    </div>\n" +
                "                    <div class=\"card-content\">\n" +
-               "                        <span class=\"card-title\"><a class=\"clink\" href=\"/Officer/"+response[i]["semesterId"]+"\">"+response[i]["semesterName"]+"</a><a class=\"dropdown-trigger right\" data-target=\"dropdown\" href=\"#\"><i class=\"material-icons\">more_vert</i></a></span>\n" +
+               "                        <span class=\"card-title\"><a class=\"clink semesterCard\" id=\""+response[i]["semesterId"]+"\" href=\""+response[i]["semesterId"]+"\">"+response[i]["semesterName"]+"</a><a class=\"dropdown-trigger right\" data-target=\"dropdown\" href=\"#\"><i class=\"material-icons\">more_vert</i></a></span>\n" +
                "                    </div>\n" +
                "\n" +
                "                    <ul id=\"dropdown\" class=\"dropdown-content\">\n" +
