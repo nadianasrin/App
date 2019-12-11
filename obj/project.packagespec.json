@@ -1,18 +1,16 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "F:\\App\\App.csproj",
+    "projectUniqueName": "E:\\App\\App.csproj",
     "projectName": "App",
-    "projectPath": "F:\\App\\App.csproj",
-    "outputPath": "F:\\App\\obj\\",
+    "projectPath": "E:\\App\\App.csproj",
+    "outputPath": "E:\\App\\obj\\",
     "projectStyle": "PackageReference",
-    "fallbackFolders": [
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-    ],
     "originalTargetFrameworks": [
       "netcoreapp3.0"
     ],
     "sources": {
+      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
